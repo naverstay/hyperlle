@@ -1,0 +1,25 @@
+mixin dev_head(page_title)
+    head
+        title=page_title
+        | 
+        | <!-- saved from url=(0014)about:internet -->
+        meta(charset='utf-8')
+        meta(name='viewport', content="width=device-width, initial-scale=1.0")
+        meta(name="SKYPE_TOOLBAR", content="SKYPE_TOOLBAR_PARSER_COMPATIBLE")
+        meta(name="apple-mobile-web-app-capable", content="yes")
+        meta(name="format-detection", content="telephone=no")
+        link(rel='stylesheet', href='styles/lightbox.css', media='all')
+        link(rel='stylesheet', href='styles/main_global.css', media='all')
+        link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+        link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+        link(href='http://fonts.googleapis.com/css?family=Kelly+Slab&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+        script(src='js/min/all.min.js')
+        script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true')
+        script(src='js/script.js')
+
+mixin loop_while(counter)
+    -i=0;
+    while i < counter
+        -i++;
+        block
+

@@ -1,0 +1,48 @@
+include mixins.pug
+doctype html
+html(lang='ru')
+    +dev_head('Sarah главная')
+
+    body
+        .wrapper
+            .rect_1024
+            .base
+                div.header
+                    .section_inner.clearfix
+                        .logo_block
+                            a.logo(href='#')
+                                span Hyperlee Store
+                                span.beta beta
+
+                        .share_block
+                            .share_caption скидки на все туры
+                            .share_caption
+                                | скидки на все туры
+                                span.share_value 8%
+
+
+                        .header_partners_block
+                            .header_p_block_row При поддержке
+                            .header_p_block_row.mod_1 Клуба путешественников
+                            .header_p_block_row.mod_2 “Turtle-Traveller”
+
+
+                    ul.main_menu
+                        li.menu_item
+                            a.menu_link.bg_color_white_mod(href='#')
+                                span.link_text О нас
+                        li.menu_item
+                            a.menu_link.bg_color_blue_mod(href='#')
+                                span.link_text ОТЗЫВЫ
+                        li.menu_item
+                            a.menu_link.bg_color_orange_mod(href='#')
+                                span.link_text ЛУЧШИЕ ПРЕДЛОЖЕНИЯ
+                        
+
+
+
+
+                div.main_content
+
+
+            .footer

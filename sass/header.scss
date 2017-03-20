@@ -1,0 +1,57 @@
+//*************************** header
+
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  line-height: 100px;
+
+  .section_inner {
+    padding: 0 25px;
+  }
+}
+
+.logo_block {
+  float: left;
+  padding-left: 10px;
+}
+
+.logo {
+  position: relative;
+  display: block;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.lang_switcher {
+  float: left;
+  padding-left: 60px;
+}
+
+.callback_block {
+  float: right;
+}
+
+// *********  menu
+
+.main_menu {
+}
+
+.menu_item {
+  float: left;
+  margin: 0 17px;
+}
+
+.menu_link {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  padding-left: 32px;
+  text-decoration: none;
+
+}
+

@@ -1,0 +1,59 @@
+html, body {
+  height: 100%;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font: 16px/1.2 $Roboto;
+  color: $default_t_color;
+}
+
+.hide {
+  display: none !important;
+}
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  padding: 100px 0 0;
+}
+
+.base {
+  padding-bottom: 150px;
+}
+
+.section_inner {
+  width: 100%;
+  max-width: $content-max-w;
+  margin: 0 auto;
+}
+
+// **********  text
+
+.text_center {
+  text-align: center;
+}
+
+.text_right {
+  text-align: right;
+}
+
+.text_left {
+  text-align: left;
+}
+
+.text_upper {
+  text-transform: uppercase;
+}
