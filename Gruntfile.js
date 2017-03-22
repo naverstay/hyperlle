@@ -15,15 +15,35 @@ module.exports = function (grunt) {
                 options: {
                     spawn: false
                 }
+            },
+            scripts: {
+                files: ['js/*.js'],
+                tasks: ['uglify'],
+                options: {
+                    spawn: false
+                }
             }
         },
         sass: {
             dist: {
                 options: {
-                    style: 'expanded'
+                    style: 'expanded',
+                    sourcemap: 'none',
+                    noCache: true
                 },
                 files: {
                     'styles/main_global.css': 'sass/main_global.scss'
+                }
+            }
+        },
+        uglify: {
+            all_js: {
+                files: {
+                    'js/min/all.js': [
+                        'js/jquery1.10.js',
+                        'js/select2.js',
+                        'js/script.js'
+                    ]
                 }
             }
         },

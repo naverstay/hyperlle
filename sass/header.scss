@@ -1,30 +1,136 @@
 //*************************** header
 
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  line-height: 100px;
+  z-index: 5;
+  background: #fff;
+  border-top: 2px solid #191919;
+  border-bottom: 1px solid #e3e3e3;
 
   .section_inner {
-    padding: 0 25px;
+    padding: 20px 12px;
+
+    @include respond-to-min($resp_step_2) {
+      padding: 40px 12px;
+    }
   }
 }
 
 .logo_block {
-  float: left;
-  padding-left: 10px;
+  max-width: 80%;
+
+  @include respond-to-min($resp_step_2) {
+    float: left;
+  }
 }
 
 .logo {
+  @extend %clearfix;
   position: relative;
   display: block;
+  padding-top: 2px;
+  font: 30px/42px $KIYESANS;
+  color: $default_t_color;
+  letter-spacing: 0.015em;
 
-  img {
-    display: block;
-    width: 100%;
+  span {
+    float: left;
   }
+
+  @include respond-to-min($resp_step_2) {
+    font-size: 37px;
+  }
+}
+
+.beta {
+  font: 14px/16px $RALEWAYBOLD;
+  padding: 2px 0 0 6px;
+  color: #f43927;
+  letter-spacing: -0.05em;
+}
+
+.store {
+  color: #fff;
+  background: #f43927;
+  text-align: center;
+  font: 11px/23px $RALEWAYBOLD;
+  padding: 2px 5px;
+  float: left;
+  clear: both;
+
+  @include respond-to-min($resp_step_2) {
+    font-size: 13px;
+  }
+}
+
+.mob_menu_btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: 10px;
+  top: 10px;
+  z-index: 6;
+
+  &:after {
+    height: 2px;
+    background: #3a3a3a;
+    margin-top: -1px;
+  }
+
+  &:before {
+    border: solid #3a3a3a;
+    border-width: 2px 0;
+    margin-top: -6px;
+    height: 12px;
+  }
+
+  &:after,
+  &:before {
+    @include transition_all(transform .3s);
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    right: 5px;
+    transform-origin: 50% 50%;
+  }
+
+  .menu_opened & {
+    right: 2px;
+    top: 2px;
+
+    &:after,
+    &:before {
+      border: none;
+      height: 2px;
+      right: 3px;
+      left: 3px;
+      margin-top: -2px;
+      background: #3a3a3a;
+    }
+
+    &:after {
+      @include transform_rotate_no_check(-45);
+    }
+
+    &:before {
+      @include transform_rotate_no_check(45);
+    }
+  }
+
+  @include respond-to-min($resp_step_2) {
+    display: none;
+  }
+}
+
+.best_offers {
+  float: left;
+  padding: 5px 42px;
+  letter-spacing: .01em;
+  font: 19px/26px $RALEWAYBOLD;
 }
 
 .lang_switcher {
@@ -38,20 +144,76 @@
 
 // *********  menu
 
-.main_menu {
+.main_menu_holder {
+  text-align: center;
+  @include transition_all(transform .3s);
+
+  @include respond-to-max($resp_step_2) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    padding: 50px 0;
+    bottom: 0;
+    z-index: 5;
+    background: #fff;
+    -webkit-transform: translate(310px, 0);
+    -ms-transform: translate(310px, 0);
+    transform: translate(310px, 0);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+
+    .menu_link {
+      display: block;
+      padding: 20px 0;
+    }
+
+    .menu_opened & {
+      -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+      transform: translate(0, 0);
+    }
+  }
+
+  @include respond-to-min($resp_step_2) {
+    margin-right: 180px;
+  }
 }
 
 .menu_item {
-  float: left;
-  margin: 0 17px;
+
+  @include respond-to-min($resp_step_2) {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 48px;
+    padding-top: 17px;
+  }
 }
 
 .menu_link {
+  @include transition_all(color .3s);
   cursor: pointer;
-  position: relative;
-  display: block;
-  padding-left: 32px;
   text-decoration: none;
+  color: $default_t_color;
+  font: 16px $RALEWAYMEDIUM;
+  letter-spacing: -.01em;
 
+  &:hover {
+    color: #6ab962;
+  }
 }
 
+.header_contacts {
+  font: 18px $RALEWAYBOLD;
+  padding-top: 8px;
+  text-align: right;
+  display: none;
+  
+  @include respond-to-min($resp_step_2) {
+    float: right;
+    display: block;
+  }
+}
+
+.phone_code {
+  color: #b4b4b4;
+}

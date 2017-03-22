@@ -8,18 +8,300 @@ mixin dev_head(page_title)
         meta(name="SKYPE_TOOLBAR", content="SKYPE_TOOLBAR_PARSER_COMPATIBLE")
         meta(name="apple-mobile-web-app-capable", content="yes")
         meta(name="format-detection", content="telephone=no")
-        link(rel='stylesheet', href='styles/lightbox.css', media='all')
-        link(rel='stylesheet', href='styles/main_global.css', media='all')
-        link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic', rel='stylesheet', type='text/css')
-        link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic&subset=latin,cyrillic', rel='stylesheet', type='text/css')
-        link(href='http://fonts.googleapis.com/css?family=Kelly+Slab&subset=latin,cyrillic', rel='stylesheet', type='text/css')
-        script(src='js/min/all.min.js')
-        script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true')
-        script(src='js/script.js')
+        link(rel='stylesheet', href='styles/main_global.css?no_cache', media='all')
+        script(src='js/min/all.js?no_cache')
 
 mixin loop_while(counter)
     -i=0;
     while i < counter
         -i++;
         block
+       
+mixin header()
+    div.header
+        .section_inner.clearfix
+            .logo_block
+                a.logo(href='#')
+                    span hyperlee.com
+                    span.beta beta
+                    .store Магазин вычислительных ресурсов
 
+            //-.best_offers Лучшие предложения дата-центров <br> России в одном месте
+            .header_contacts
+                span.phone_code +7 495 
+                b.fw_b 103-30-40
+
+            .mob_menu_btn.menuBtn
+                
+            .main_menu_holder: ul.main_menu
+                li.menu_item
+                    a.menu_link(href='#')
+                        span.link_text Машинное обучение
+                li.menu_item
+                    a.menu_link(href='#')
+                        span.link_text Все сервера
+                li.menu_item
+                    a.menu_link(href='#')
+                        span.link_text Тарифы
+                li.menu_item
+                    a.menu_link(href='#')
+                        span.link_text Как это работает
+
+mixin footer()
+    .footer
+        .section_inner
+            ul.footer_contacts
+                li.fz_16
+                    a.f_contact(href='tel:+74951033040')
+                        span.f_contact_icon
+                            img(src='i/phone.png')
+                        span +7 495 103-30-40
+            
+                li
+                    .f_contact
+                        span.f_contact_icon
+                            img(src='i/pin.png')
+                        span Москва, Большой Каретный пер, дом 8, стр.20, офис 14
+            
+                li.fz_16
+                    a.f_contact(href='mailto:moscow@hyperlee.com')
+                        span.f_contact_icon
+                            img(src='i/envelope.png')
+                        span moscow@hyperlee.com
+                        
+                li
+                    ul.so_sh
+                        li: a.sh_link.sh_link_1(href='#')
+                        li: a.sh_link.sh_link_2(href='#')
+                        li: a.sh_link.sh_link_3(href='#')
+                        li: a.sh_link.sh_link_4(href='#')
+
+mixin product_offer()
+    .product_offer
+        .product_offer_table
+            .thead
+                .tr
+                    .td._col_1
+                        .prod_t_caption
+                            span.mb Тариф
+                    .td._col_3.sortCol
+                        .prod_t_caption._sort.sortBtn
+                            span.mb
+                                span Цена/день
+                                span.sort_icon
+                    .td._col_2.sortCol._sort_desc
+                        .prod_t_caption._sort.sortBtn
+                            span.mb
+                                span Мощности
+                                span.sort_icon
+                    
+            .tbody
+                .tr.prodRow
+                    .td._col_1
+                        .prod_name
+                            label.radio_v1
+                                input.hide.prodCheck(type='radio' name='product')
+                                span.check_text 
+                                    span Hyperlee
+                                    span.fw_b One
+                                    
+                    .td._col_3
+                        .prod_price 100 &#8381;
+                            
+                    .td._col_2
+                        .prod_info
+                            p 1 x Core 2 Duo E8400 3GHz1 x 2048MB DDR22 x 250Gb SATA
+                    
+                .tr.prodRow
+                    .td._col_1
+                        .prod_name
+                            label.radio_v1
+                                input.hide.prodCheck(type='radio' name='product')
+                                span.check_text 
+                                    span Hyperlee
+                                    span.fw_b X
+                    .td._col_3
+                        .prod_price 200 &#8381;
+                                    
+                    .td._col_2
+                        .prod_info
+                            p 1 x Core 2 Duo E8400 3GHz1 x 2048MB DDR22 x 250Gb SATA
+                    
+                .tr.prodRow
+                    .td._col_1
+                        .prod_name
+                            label.radio_v1
+                                input.hide.prodCheck(type='radio' name='product')
+                                span.check_text 
+                                    span Hyperlee
+                                    span.fw_b Atom
+                    .td._col_3
+                        .prod_price 300 &#8381;
+                                    
+                    .td._col_2
+                        .prod_info
+                            p 1 x Core 2 Duo E8400 3GHz1 x 2048MB DDR22 x 250Gb SATA
+    
+    .subscribe_block
+        p Подписаться на лучшие предложения дата-центров
+        
+        .subscribe_form
+            form(action='#')
+                .form_row
+                    .form_cell.subscribe_input
+                        input.input_v1.f_input(placeholder='Ваш е-мейл')
+                    .form_cell.subscribe_btn
+                        button.btn_v2.white_green_btn.subscribe_btn Отправить
+                        
+mixin col_right()
+    .order_block
+        .order_caption Заявка в 2 клика
+        
+        .order_item 1 x Core 2 Duo E8400 3GHz1 x 2048MB DDR2 2 x 250Gb SATA
+            
+        .order_info 100 рублей в день, на&nbsp;несколько дней
+            
+        p Подключение после оплаты в&nbsp;течение 15 минут
+        
+        .offer_control
+            a.btn_v1.green_btn.offer_btn._w_100(href='#')
+                span.fw_b Заказать
+                
+mixin col_left()
+    .product_settings
+        ul.product_list
+            li.prodCat
+                .product_cat.catOpen Тип сервера
+                ul.cat_list.catList
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Офисный сервер 
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Машинное обучение 
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Работа с графикой и видео
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Рендеринг
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Хранение
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Другое 
+
+            li.prodCat
+                .product_cat.catOpen Области использования
+                ul.cat_list.catList
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Офисный сервер 
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Машинное обучение 
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Работа с графикой и видео
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Рендеринг
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Хранение
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Другое 
+
+            li.prodCat
+                .product_cat.catOpen Цена в день
+                ul.cat_list.catList
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Офисный сервер 
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Машинное обучение 
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Работа с графикой и видео
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Рендеринг
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Хранение
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Другое 
+
+            li.prodCat
+                .product_cat.catOpen На какой срок
+                ul.cat_list.catList
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Офисный сервер 
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Машинное обучение 
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Работа с графикой и видео
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Рендеринг
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Хранение
+
+                    li
+                        label.check_v1
+                            input.hide(type='checkbox')
+                            span.check_text Другое 
+                                                            
+                                                            
+                                    
+                                    

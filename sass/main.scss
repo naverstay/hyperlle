@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  font: 16px/1.2 $Roboto;
+  font: 14px/1.2 $RALEWAYREGULAR;
   color: $default_t_color;
 }
 
@@ -24,20 +24,620 @@ body {
   clear: both;
 }
 
+._rel {
+  position: relative;
+}
+
 .wrapper {
   position: relative;
   min-height: 100%;
-  padding: 100px 0 0;
+  overflow: hidden;
+  padding-top: 115px;
+
+  @include respond-to-min($resp_step_3) {
+    padding-top: 135px;
+  }
 }
 
 .base {
-  padding-bottom: 150px;
+
+  @include respond-to-min($resp_step_2) {
+    padding-bottom: 190px;
+  }
+}
+
+.main_content {
 }
 
 .section_inner {
   width: 100%;
   max-width: $content-max-w;
   margin: 0 auto;
+  padding: 0 12px;
+}
+
+.section_v2 {
+  background: #f7f7f7;
+}
+
+.section_v3 {
+  padding: 15px 0;
+
+  @include respond-to-min($resp_step_2) {
+    padding-bottom: 55px;
+  }
+}
+
+.section_v4 {
+  overflow: hidden;
+  background: #f7f7f7;
+  border-top: 1px solid #e3e3e3;
+
+  .section_inner {
+    position: relative;
+
+    @include respond-to-max($resp_step_3) {
+      padding: 0;
+    }
+  }
+}
+
+.col {
+
+  @include respond-to-min($resp_step_2) {
+
+    &._left {
+      float: left;
+      width: 50%;
+    }
+
+    &._center {
+      width: 100%;
+      float: left;
+      position: relative;
+      z-index: 2;
+    }
+
+    &._right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1000px;
+        width: 5000px;
+        background: #f0faef;
+      }
+    }
+  }
+
+  @include respond-to-min($resp_step_3) {
+
+    &._right {
+      right: 12px;
+
+    }
+
+    &._right,
+    &._left {
+      width: 280px;
+    }
+
+    &._center {
+      width: auto;
+      float: none;
+      margin: 0 280px;
+    }
+  }
+}
+
+.col_splitter {
+  &:after,
+  &:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #e3e3e3;
+    z-index: 4;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    &:before {
+      left: 50%;
+    }
+  }
+
+  @include respond-to-min($resp_step_3) {
+    &:before {
+      content: '';
+      left: 292px;
+    }
+
+    &:after {
+      content: '';
+      right: 292px;
+    }
+  }
+}
+
+.subscribe_block {
+  text-align: center;
+  padding: 45px 0 50px;
+
+  p {
+    opacity: .6;
+    letter-spacing: -.01em;
+    margin-bottom: 20px;
+  }
+}
+
+.subscribe_form {
+  margin: 0 auto;
+  max-width: 406px;
+}
+
+.order_block {
+  padding: 15px;
+  position: relative;
+  z-index: 1;
+  background: #f0faef;
+
+  p {
+    line-height: 22px;
+    margin-bottom: 15px;
+  }
+  
+  @include respond-to-min($resp_step_2) {
+    padding: 30px 5px 30px 40px;
+  }
+}
+
+.order_caption {
+  font: 30px/40px $RALEWAYBOLD;
+  letter-spacing: -.015em;
+}
+
+.order_item {
+  font: 16px/30px $RALEWAYSEMIBOLD;
+  padding: 15px 0;
+}
+
+.order_info {
+  position: relative;
+  font: 16px/24px $RALEWAYSEMIBOLD;
+  padding: 30px 0;
+  letter-spacing: .015em;
+  margin-top: 16px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 105px;
+    background: #191919;
+  }
+}
+
+.product_settings {
+  background: #f7f7f7;
+  position: relative;
+
+  @include respond-to-min($resp_step_3) {
+    &:before {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 0;
+      bottom: 0;
+      background: #f7f7f7;
+      width: 5000px;
+    }
+  }
+}
+
+.product_offer {
+  position: relative;
+  border-top: 1px solid #e8e8e8;
+  background: #fff;
+
+  @include respond-to-min($resp_step_2) {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 100%;
+      width: 1px;
+      height: 5000px;
+      background: #e3e3e3;
+      z-index: 2;
+    }
+  }
+
+  @include respond-to-min($resp_step_3) {
+    border-top: none;
+
+    &:before {
+      display: none;
+    }
+  }
+}
+
+.product_offer_table {
+  width: 100%;
+  border-collapse: collapse;
+
+  .tr {
+    overflow: hidden;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .td {
+    float: left;
+  }
+
+  ._col_1 {
+    width: 31.7%;
+  }
+
+  ._col_2 {
+    width: 43.3%;
+  }
+
+  ._col_3 {
+    width: 25%;
+    float: right;
+  }
+
+  .thead {
+    background: #f7f7f7;
+
+    .td {
+      height: 71px;
+      padding: 10px 5px;
+      line-height: 51px;
+
+      @include respond-to-min($resp_step_2) {
+        padding: 10px;
+      }
+
+      @include respond-to-min($resp_step_3) {
+        padding: 15px 15px 5px 45px;
+      }
+    }
+
+    ._col_1 {
+      @include respond-to-max($resp_step_2) {
+        width: 26%;
+      }
+    }
+
+    ._col_2 {
+      @include respond-to-max($resp_step_2) {
+        width: 37%;
+      }
+    }
+
+    ._col_3 {
+      @include respond-to-max($resp_step_2) {
+        width: 37%;
+        text-align: right;
+      }
+    }
+  }
+
+  .tbody {
+    .tr {
+      cursor: pointer;
+      @include transition_all(box-shadow .3s);
+
+      &:hover {
+        box-shadow: 0 0 27px rgba(0, 0, 0, .14);
+      }
+    }
+
+    .td {
+      padding: 10px 5px;
+
+      @include respond-to-min($resp_step_2) {
+        padding: 20px;
+      }
+
+      @include respond-to-min($resp_step_3) {
+        padding: 33px 15px 36px 45px;
+      }
+    }
+
+    ._col_1 {
+      @include respond-to-max($resp_step_2) {
+        width: 60%;
+      }
+    }
+
+    ._col_2 {
+      @include respond-to-max($resp_step_2) {
+        width: 100%;
+      }
+    }
+
+    ._col_3 {
+      @include respond-to-max($resp_step_2) {
+        width: 40%;
+        text-align: right;
+      }
+    }
+  }
+}
+
+.prod_name {
+  font-size: 18px;
+  padding-top: 15px;
+
+  @include respond-to-min($resp_step_2) {
+    font-size: 22px;
+  }
+}
+
+.prod_info {
+  letter-spacing: -.01em;
+  line-height: 22px;
+  color: transparentize($default_t_color, .5);
+
+  @include respond-to-min($resp_step_2) {
+    font-size: 16px;
+    line-height: 30px;
+    min-height: 60px;
+  }
+}
+
+.prod_price {
+  padding-top: 5px;
+  font: 27px $RALEWAYBOLD;
+  color: #f43927;
+}
+
+.prod_t_caption {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  letter-spacing: .07em;
+  color: transparentize($default_t_color, .7);
+
+  &._sort {
+    padding-right: 20px;
+    cursor: pointer;
+
+    &:before {
+      @include transition_all(transform .3s);
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 12px;
+      height: 6px;
+      margin-top: -3px;
+    }
+  }
+
+  ._sort_asc & {
+    &:before {
+      @include transform_rotate(180);
+      background: url(../i/sort_icon.png) no-repeat 0 0;
+    }
+  }
+
+  ._sort_desc & {
+    &:before {
+      background: url(../i/sort_icon.png) no-repeat 0 0;
+    }
+  }
+}
+
+.product_list {
+  > li {
+    position: relative;
+    padding: 18px 10px;
+
+    @include respond-to-min($resp_step_3) {
+      padding: 28px 0 20px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 5000px;
+        height: 1px;
+        background: #e3e3e3;
+      }
+    }
+  }
+}
+
+.product_cat {
+  position: relative;
+  padding-right: 24px;
+  font: 16px/24px $RALEWAYBOLD;
+  cursor: pointer;
+
+  &:before {
+    @include transition_all(transform .3s);
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 20px;
+    width: 20px;
+    margin-top: -10px;
+    right: 4px;
+    background: url(../i/drop_down.png) no-repeat 50% 50%;
+  }
+
+  .opened & {
+    &:before {
+      @include transform_rotate(180);
+    }
+  }
+
+  @include respond-to-min($resp_step_2) {
+    padding-right: 54px;
+
+    &:before {
+      right: 34px;
+    }
+  }
+}
+
+.cat_list {
+  display: none;
+
+  > li {
+    margin: 12px 0 18px;
+
+    &:last-child {
+      margin-bottom: 14px;
+    }
+  }
+}
+
+.section_caption {
+  margin: 20px 0;
+  font: 25px/35px $RALEWAYLIGHT;
+
+  @include respond-to-min($resp_step_2) {
+    margin: 55px 0 35px;
+    font: 35px/45px $RALEWAYLIGHT;
+  }
+}
+
+.link_list {
+  margin: 0 -30px;
+
+  li {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px 28px;
+  }
+}
+
+.offer_list_holder {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.offer_list {
+  @extend %clearfix;
+  text-align: center;
+  font-size: 0;
+  margin-left: -14px;
+
+  > li {
+    margin-top: 37px;
+    margin-bottom: 25px;
+    font-size: 14px;
+    padding-left: 14px;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    padding-bottom: 65px;
+
+    > li {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+    }
+  }
+
+  @include respond-to-min($resp_step_3) {
+    margin-right: -1%;
+
+    > li {
+      width: 33%;
+    }
+  }
+}
+
+.offer_unit {
+  @include transition_all(background .3s, box-shadow .3s);
+  background: #f7f7f7;
+  border: 1px solid #f1f1f1;
+  padding: 70px 20px 32px;
+  min-height: 545px;
+
+  &:hover {
+    background: #f0faef;
+    box-shadow: 0 0 27px rgba(0, 0, 0, .14);
+  }
+}
+
+.offer_img {
+  margin-bottom: 30px;
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+  }
+}
+
+.offer_name {
+  font-size: 30px;
+  margin-bottom: 28px;
+}
+
+.offer_gpu {
+  font: 18px $RALEWAYBOLD;
+  margin-bottom: 20px;
+}
+
+.offer_cpu {
+  opacity: .5;
+  margin-bottom: 15px;
+}
+
+.offer_tip {
+  opacity: .5;
+  line-height: 20px;
+  font-family: $RALEWAYSEMIBOLD;
+  margin-bottom: 20px;
+}
+
+.offer_price {
+  color: #f43927;
+  font: 40px $RALEWAYBOLD;
+  margin-bottom: 5px;
+}
+
+.offer_control {
+  padding-top: 15px;
+}
+
+.individual_offer {
+  text-align: center;
+  padding: 28px 0;
+  font: 20px/28px $RALEWAYLIGHT;
+
+  @include respond-to-min($resp_step_2) {
+    padding: 68px 0;
+    font: 30px/48px $RALEWAYLIGHT;
+  }
+}
+
+.scroll_down {
+  display: inline-block;
+  vertical-align: top;
+  margin: 50px 0 15px;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
 }
 
 // **********  text
@@ -56,4 +656,40 @@ body {
 
 .text_upper {
   text-transform: uppercase;
+}
+
+.fw_b {
+  font-family: $RALEWAYBOLD;
+}
+
+.fz_16 {
+  font-size: 16px;
+}
+
+.fz_30 {
+  font-size: 20px;
+
+  @include respond-to-min($resp_step_2) {
+    font-size: 30px;
+  }
+}
+
+.fz_35 {
+  font-size: 25px;
+
+  @include respond-to-min($resp_step_2) {
+    font-size: 35px;
+  }
+}
+
+.fz_45 {
+  font-size: 35px;
+
+  @include respond-to-min($resp_step_2) {
+    font-size: 45px;
+  }
+}
+
+.clr_green {
+  color: #60cc69;
 }

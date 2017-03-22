@@ -1,9 +1,11 @@
 $pi: 3.14159265359;
 $square_root_of_2: 1.41421356237;
 
-$resp_step_2: 1040px;
+$resp_step_1: 320px;
+$resp_step_2: 768px;
+$resp_step_3: 1200px;
 
-$content-max-w: 1440px;
+$content-max-w: 1420px;
 
 $icomoon-font-path: "../fonts";
 $icomoon-font-name: 'air_icons';
@@ -35,7 +37,7 @@ $cross_font_TimesNewRoman: 'Times New Roman', 'Times CY', 'Nimbus Roman No9 L', 
 $cross_font_TrebuchetMS: 'Trebuchet MS', 'Helvetica CY', sans-serif;
 $cross_font_Verdana: Verdana, 'Geneva CY', 'DejaVu Sans', sans-serif;
 
-$default_t_color: #4a5669;
+$default_t_color: #020202;
 $placeholder_color: #ccc;
 
 @mixin opacity($val : 1, $important : 0) {

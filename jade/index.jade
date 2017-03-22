@@ -1,48 +1,124 @@
 include mixins.pug
 doctype html
 html(lang='ru')
-    +dev_head('Sarah главная')
+    +dev_head('hyperlee главная')
 
     body
         .wrapper
-            .rect_1024
             .base
-                div.header
-                    .section_inner.clearfix
-                        .logo_block
-                            a.logo(href='#')
-                                span Hyperlee Store
-                                span.beta beta
+                +header()
+                
+                .main_content
+                    .section_inner
+                        .section_caption.text_center 
+                            span Лучшие графические карты для
+                            br
+                            span.fz_45 машинного обучения
+                            
+                        ul.link_list.text_center
+                            li: a.menu_link(href='#')
+                                span.link_text Тарифы
+                            li: a.menu_link(href='#')
+                                span.link_text Сравнение карт
+                            li: a.menu_link(href='#')
+                                span.link_text Мероприятия
+                            li: a.menu_link(href='#')
+                                span.link_text Для студентов
 
-                        .share_block
-                            .share_caption скидки на все туры
-                            .share_caption
-                                | скидки на все туры
-                                span.share_value 8%
+                        .offer_list_holder: ul.offer_list
+                            li
+                                input.hide(type='checkbox')
+                                .offer_unit
+                                    .offer_img
+                                        img(src='i/icon_x.png')
+                                    .offer_name 
+                                        span Hyperlee
+                                        span.fw_b X
+                                        
+                                    .offer_gpu Nvidia GTX 1060
+                                    .offer_cpu Intel Core i5 7600K,64 гб ОЗУ,480 гб SSD
+                                    .offer_tip Бюджетный вариант. <br> Хорошо подходит для работы в Kaggle
+                                    .offer_price 300 &#8381;
+                                    .offer_tip
+                                        span.fz_16 в день
+                                        
+                                    .offer_control
+                                        a.btn_v1.green_btn.offer_btn(href='#')
+                                            span.fw_b Подключить 
+                                            span.fz_16  в 2 клика 
+                                            
+                            li
+                                input.hide(type='checkbox')
+                                .offer_unit
+                                    .offer_img
+                                        img(src='i/icon_xl.png')
+                                    .offer_name 
+                                        span Hyperlee
+                                        span.fw_b XL
+                                        
+                                    .offer_gpu Nvidia GTX 1080
+                                    .offer_cpu Intel Core i5 7600K,64 гб ОЗУ,480 гб SSD
+                                    .offer_tip Лучшее соотношение цены <br> и качества
 
+                                    .offer_price 450 &#8381;
+                                    .offer_tip
+                                        span.fz_16 в день
+                                        
+                                    .offer_control
+                                        a.btn_v1.green_btn.offer_btn(href='#')
+                                            span.fw_b Подключить 
+                                            span.fz_16  в 2 клика 
+                                            
+                            li
+                                input.hide(type='checkbox')
+                                .offer_unit
+                                    .offer_img
+                                        img(src='i/icon_xxl.png')
+                                    .offer_name 
+                                        span Hyperlee
+                                        span.fw_b XXL
+                                        
+                                    .offer_gpu Nvidia Titan X Pascal
+                                    .offer_cpu Intel Core i5 7600K,64 гб ОЗУ,480 гб SSD
+                                    .offer_tip Лучшая карта для машинного <br> обучения
 
-                        .header_partners_block
-                            .header_p_block_row При поддержке
-                            .header_p_block_row.mod_1 Клуба путешественников
-                            .header_p_block_row.mod_2 “Turtle-Traveller”
-
-
-                    ul.main_menu
-                        li.menu_item
-                            a.menu_link.bg_color_white_mod(href='#')
-                                span.link_text О нас
-                        li.menu_item
-                            a.menu_link.bg_color_blue_mod(href='#')
-                                span.link_text ОТЗЫВЫ
-                        li.menu_item
-                            a.menu_link.bg_color_orange_mod(href='#')
-                                span.link_text ЛУЧШИЕ ПРЕДЛОЖЕНИЯ
+                                    .offer_price 850 &#8381;
+                                    .offer_tip
+                                        span.fz_16 в день
+                                        
+                                    .offer_control
+                                        a.btn_v1.green_btn.offer_btn(href='#')
+                                            span.fw_b Подключить 
+                                            span.fz_16  в 2 клика 
+                                            
+                    .section.section_v2
+                        .section_inner
+                            .individual_offer
+                                p 
+                                    | Если вам нужна индивидуальная конфигурация сервера <br> позвоните 
+                                    span.fw_b.clr_green  7 495 103-30-40 
+                                    |  и мы подключим его вам в кратчайшие сроки
                         
+                                
+                    .section.section_v3
+                        .section_inner
+                            .text_center
+                                a.scroll_down(href='#')
+                                    img(src='i/scroll_down.png')
+                                    
+                            .section_caption.text_center
+                                span.fz_35 Заказывайте все необходимые <br> вычислительные ресурсы в одном месте
+                    .section.section_v4
+                        .section_inner.clearfix
+                            .col_splitter
+                            .col._left
+                                +col_left()
+                                
+                            .col._center
+                                +product_offer()
+                                
+                            .col._right
+                                +col_right()
+                                
 
-
-
-
-                div.main_content
-
-
-            .footer
+            +footer()
