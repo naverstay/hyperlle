@@ -30,6 +30,43 @@
   }
 }
 
+.val_btn {
+  @include transition_all(border-color .3s);
+  @extend %no-user-select;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 45px;
+  font-size: 30px;
+  line-height: 43px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid transparent;
+  z-index: 1;
+
+  &:hover {
+    border-color: #e3e3e3;
+  }
+
+  &.minus {
+    left: 0;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+
+  &.plus {
+    right: 0;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+
+  &.disabled {
+    cursor: default;
+    background: none;
+    color: #a0a0a0;
+  }
+}
+
 .green_btn {
   @include transition_all(background .3s);
   color: #fff;

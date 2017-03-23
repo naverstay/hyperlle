@@ -102,6 +102,10 @@
   }
 }
 
+.input_w {
+  position: relative;
+}
+
 .f_input {
   display: block;
   width: 100%;
@@ -115,4 +119,9 @@
   border-radius: 30px;
   border: 1px solid #e3e3e3;
   background: #fff;
+
+  &._counter {
+    text-align: center;
+    padding: 10px 50px;
+  }
 }

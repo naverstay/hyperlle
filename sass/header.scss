@@ -200,6 +200,11 @@
   &:hover {
     color: #6ab962;
   }
+  
+  ._active & {
+    cursor: default;
+    color: #6ab962;
+  }
 }
 
 .header_contacts {
@@ -207,7 +212,7 @@
   padding-top: 8px;
   text-align: right;
   display: none;
-  
+
   @include respond-to-min($resp_step_2) {
     float: right;
     display: block;

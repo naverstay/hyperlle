@@ -1,10 +1,18 @@
-.offer_list:after, .logo:after, .form_row:after, .so_sh:after {
+.offer_list:after, .server_list:after, .logo:after, .form_row:after, .so_sh:after {
   position: static;
   display: block;
   height: 0;
   clear: both;
   content: "";
   visibility: hidden;
+}
+
+.val_btn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 
 .f_contact_icon {
@@ -208,6 +216,13 @@ a {
 
 /*-----------------------------form elements###*/
 @font-face {
+  font-family: 'PTRoubleSans';
+  src: url(../fonts/PTRoubleSans.eot);
+  src: url(../fonts/PTRoubleSans.eot?#iefix) format("embedded-opentype"), url(../fonts/PTRoubleSans.woff) format("woff"), url(../fonts/PTRoubleSans.ttf) format("truetype"), url(../fonts/PTRoubleSans.svg) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
   font-family: 'KIYESANS';
   src: url(../fonts/KIYE-SANS_0.eot);
   src: url(../fonts/KIYE-SANS_0.eot?#iefix) format("embedded-opentype"), url(../fonts/KIYE-SANS_0.woff) format("woff"), url(../fonts/KIYE-SANS_0.ttf) format("truetype"), url(../fonts/KIYE-SANS_0.svg) format("svg");
@@ -265,7 +280,7 @@ html {
 }
 
 body {
-  font: 14px/1.2 "RALEWAYREGULAR", sans-serif;
+  font: 14px/1.2 RALEWAYREGULAR, sans-serif;
   color: #020202;
 }
 
@@ -435,18 +450,18 @@ body {
 }
 
 .order_caption {
-  font: 30px/40px "RALEWAYBOLD", sans-serif;
+  font: 30px/40px RALEWAYBOLD, sans-serif;
   letter-spacing: -.015em;
 }
 
 .order_item {
-  font: 16px/30px "RALEWAYSEMIBOLD", sans-serif;
+  font: 16px/30px RALEWAYSEMIBOLD, sans-serif;
   padding: 15px 0;
 }
 
 .order_info {
   position: relative;
-  font: 16px/24px "RALEWAYSEMIBOLD", sans-serif;
+  font: 16px/24px RALEWAYSEMIBOLD, sans-serif;
   padding: 30px 0;
   letter-spacing: .015em;
   margin-top: 16px;
@@ -622,7 +637,7 @@ body {
 
 .prod_price {
   padding-top: 5px;
-  font: 27px "RALEWAYBOLD", sans-serif;
+  font: 27px RALEWAYBOLD, sans-serif;
   color: #f43927;
 }
 
@@ -681,7 +696,7 @@ body {
 .product_cat {
   position: relative;
   padding-right: 24px;
-  font: 16px/24px "RALEWAYBOLD", sans-serif;
+  font: 16px/24px RALEWAYBOLD, sans-serif;
   cursor: pointer;
 }
 .product_cat:before {
@@ -723,12 +738,12 @@ body {
 
 .section_caption {
   margin: 20px 0;
-  font: 25px/35px "RALEWAYLIGHT", sans-serif;
+  font: 25px/35px RALEWAYLIGHT, sans-serif;
 }
 @media only screen and (min-width: 768px) {
   .section_caption {
     margin: 55px 0 35px;
-    font: 35px/45px "RALEWAYLIGHT", sans-serif;
+    font: 35px/45px RALEWAYLIGHT, sans-serif;
   }
 }
 
@@ -775,18 +790,80 @@ body {
     width: 33%;
   }
 }
+@media only screen and (max-width: 767px) {
+  .offer_list._how_mode > li {
+    margin: 0;
+  }
+}
 
 .offer_unit {
-  -webkit-transition: background 0.3s, box-shadow 0.3s;
-  -ms-transition: background 0.3s, box-shadow 0.3s;
-  transition: background 0.3s, box-shadow 0.3s;
-  background: #f7f7f7;
-  border: 1px solid #f1f1f1;
   padding: 70px 20px 32px;
   min-height: 545px;
+  position: relative;
 }
-.offer_unit:hover {
+.offer_unit:before {
+  -webkit-transition: background 0.3s, box-shadow 0.3s, top 0.3s, bottom 0.3s;
+  -ms-transition: background 0.3s, box-shadow 0.3s, top 0.3s, bottom 0.3s;
+  transition: background 0.3s, box-shadow 0.3s, top 0.3s, bottom 0.3s;
+  background: #f7f7f7;
+  border: 1px solid #f1f1f1;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.offer_unit._main:before {
   background: #f0faef;
+  top: -30px;
+  bottom: -30px;
+  box-shadow: 0 0 27px rgba(0, 0, 0, 0.14);
+}
+
+.unit_inner {
+  position: relative;
+  z-index: 1;
+}
+
+.tariff_unit {
+  padding: 35px 20px 17px;
+  min-height: 345px;
+  position: relative;
+}
+.tariff_unit:before {
+  -webkit-transition: background 0.3s, box-shadow 0.3s, top 0.3s, bottom 0.3s;
+  -ms-transition: background 0.3s, box-shadow 0.3s, top 0.3s, bottom 0.3s;
+  transition: background 0.3s, box-shadow 0.3s, top 0.3s, bottom 0.3s;
+  background: #f7f7f7;
+  border: 1px solid #f1f1f1;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.tariff_unit .offer_img {
+  margin-bottom: 37px;
+}
+.tariff_unit .offer_name {
+  margin-bottom: 20px;
+}
+.tariff_unit .offer_tip {
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tariff_unit .offer_name + .offer_tip {
+  min-height: 6.5em;
+}
+.tariff_unit._main:before {
+  background: #f0faef;
+  top: -30px;
+  bottom: -30px;
   box-shadow: 0 0 27px rgba(0, 0, 0, 0.14);
 }
 
@@ -805,7 +882,7 @@ body {
 }
 
 .offer_gpu {
-  font: 18px "RALEWAYBOLD", sans-serif;
+  font: 18px RALEWAYBOLD, sans-serif;
   margin-bottom: 20px;
 }
 
@@ -817,29 +894,29 @@ body {
 .offer_tip {
   opacity: .5;
   line-height: 20px;
-  font-family: "RALEWAYSEMIBOLD", sans-serif;
+  font-family: RALEWAYSEMIBOLD, sans-serif;
   margin-bottom: 20px;
 }
 
 .offer_price {
   color: #f43927;
-  font: 40px "RALEWAYBOLD", sans-serif;
+  font: 40px RALEWAYBOLD, sans-serif;
   margin-bottom: 5px;
 }
 
-.offer_control {
-  padding-top: 15px;
+.offer_control > li {
+  margin-top: 15px;
 }
 
 .individual_offer {
   text-align: center;
   padding: 28px 0;
-  font: 20px/28px "RALEWAYLIGHT", sans-serif;
+  font: 20px/28px RALEWAYLIGHT, sans-serif;
 }
 @media only screen and (min-width: 768px) {
   .individual_offer {
     padding: 68px 0;
-    font: 30px/48px "RALEWAYLIGHT", sans-serif;
+    font: 30px/48px RALEWAYLIGHT, sans-serif;
   }
 }
 
@@ -851,6 +928,99 @@ body {
 .scroll_down img {
   display: block;
   max-width: 100%;
+}
+
+.server_list {
+  margin: 0 -10px 12px -20px;
+}
+.server_list > li {
+  float: left;
+  width: 25%;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+.server_item {
+  text-align: center;
+}
+.server_item img {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 100%;
+}
+
+.step_unit {
+  text-align: left;
+  position: relative;
+  background: #f7f7f7;
+  border: 1px solid #f2f2f2;
+  padding: 20px 20px 2px;
+  min-height: 415px;
+  margin-bottom: 14px;
+}
+@media only screen and (min-width: 768px) {
+  .step_unit {
+    padding: 30px 35px 2px;
+  }
+}
+.step_unit p {
+  font: 16px/20px RALEWAYMEDIUM, sans-serif;
+  margin-bottom: 16px;
+  letter-spacing: .02em;
+}
+@media only screen and (min-width: 768px) {
+  .step_unit p {
+    margin-bottom: 28px;
+  }
+}
+.step_unit.step_promo {
+  background: #f6fcf5;
+}
+@media only screen and (min-width: 768px) {
+  .step_unit.step_promo {
+    padding: 65px 50px 92px;
+  }
+}
+.step_unit.step_feature {
+  min-height: 0;
+}
+@media only screen and (min-width: 768px) {
+  .step_unit.step_feature {
+    padding: 40px 25px 5px 65px;
+    min-height: 92px;
+  }
+}
+
+.step_info {
+  margin-top: 36px;
+  line-height: 21px;
+  padding-left: 5px;
+}
+
+.step_title {
+  font: 42px KIYESANS, sans-serif;
+  margin-bottom: 36px;
+}
+
+.step_arrow {
+  z-index: 1;
+  position: absolute;
+  width: 36px;
+  height: 15px;
+  top: 50%;
+  left: -16px;
+  margin-top: -8px;
+  background: url(../i/arrow_r.png) no-repeat 0 0;
+}
+@media only screen and (max-width: 767px) {
+  .step_arrow {
+    top: -5px;
+    left: 50%;
+    margin-left: -6px;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
 }
 
 .text_center {
@@ -870,7 +1040,11 @@ body {
 }
 
 .fw_b {
-  font-family: "RALEWAYBOLD", sans-serif;
+  font-family: RALEWAYBOLD, sans-serif;
+}
+
+._rub {
+  font-family: PTRoubleSans, sans-serif;
 }
 
 .fz_16 {
@@ -940,7 +1114,7 @@ body {
   position: relative;
   display: block;
   padding-top: 2px;
-  font: 30px/42px "KIYESANS", sans-serif;
+  font: 30px/42px KIYESANS, sans-serif;
   color: #020202;
   letter-spacing: 0.015em;
 }
@@ -954,7 +1128,7 @@ body {
 }
 
 .beta {
-  font: 14px/16px "RALEWAYBOLD", sans-serif;
+  font: 14px/16px RALEWAYBOLD, sans-serif;
   padding: 2px 0 0 6px;
   color: #f43927;
   letter-spacing: -0.05em;
@@ -964,7 +1138,7 @@ body {
   color: #fff;
   background: #f43927;
   text-align: center;
-  font: 11px/23px "RALEWAYBOLD", sans-serif;
+  font: 11px/23px RALEWAYBOLD, sans-serif;
   padding: 2px 5px;
   float: left;
   clear: both;
@@ -1037,7 +1211,7 @@ body {
   float: left;
   padding: 5px 42px;
   letter-spacing: .01em;
-  font: 19px/26px "RALEWAYBOLD", sans-serif;
+  font: 19px/26px RALEWAYBOLD, sans-serif;
 }
 
 .lang_switcher {
@@ -1102,15 +1276,19 @@ body {
   cursor: pointer;
   text-decoration: none;
   color: #020202;
-  font: 16px "RALEWAYMEDIUM", sans-serif;
+  font: 16px RALEWAYMEDIUM, sans-serif;
   letter-spacing: -.01em;
 }
 .menu_link:hover {
   color: #6ab962;
 }
+._active .menu_link {
+  cursor: default;
+  color: #6ab962;
+}
 
 .header_contacts {
-  font: 18px "RALEWAYBOLD", sans-serif;
+  font: 18px RALEWAYBOLD, sans-serif;
   padding-top: 8px;
   text-align: right;
   display: none;
@@ -1216,6 +1394,10 @@ body {
   }
 }
 
+.input_w {
+  position: relative;
+}
+
 .f_input {
   display: block;
   width: 100%;
@@ -1230,6 +1412,10 @@ body {
   border: 1px solid #e3e3e3;
   background: #fff;
 }
+.input_v1._counter {
+  text-align: center;
+  padding: 10px 50px;
+}
 
 .btn_v1 {
   height: 60px;
@@ -1239,7 +1425,7 @@ body {
   vertical-align: top;
   border-radius: 30px;
   padding: 15px 30px;
-  font: 22px/30px "RALEWAYSEMIBOLD", sans-serif;
+  font: 22px/30px RALEWAYSEMIBOLD, sans-serif;
   text-align: center;
 }
 
@@ -1250,9 +1436,43 @@ body {
   display: block;
   width: 100%;
   padding: 10px;
-  font: 16px/23px "RALEWAYSEMIBOLD", sans-serif;
+  font: 16px/23px RALEWAYSEMIBOLD, sans-serif;
   text-align: center;
   border-radius: 30px;
+}
+
+.val_btn {
+  -webkit-transition: border-color 0.3s;
+  -ms-transition: border-color 0.3s;
+  transition: border-color 0.3s;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 45px;
+  font-size: 30px;
+  line-height: 43px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid transparent;
+  z-index: 1;
+}
+.val_btn:hover {
+  border-color: #e3e3e3;
+}
+.val_btn.minus {
+  left: 0;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.val_btn.plus {
+  right: 0;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.val_btn.disabled {
+  cursor: default;
+  background: none;
+  color: #a0a0a0;
 }
 
 .green_btn {
