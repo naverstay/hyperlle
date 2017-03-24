@@ -784,7 +784,7 @@ body {
     position: absolute;
     left: 100%;
     top: 0;
-    min-width: 280px;
+    min-width: 295px;
   }
   .col._right._fixed_order .aside_holder {
     width: 100%;
@@ -851,6 +851,23 @@ body {
   max-width: 406px;
 }
 
+.order_empty {
+  margin: 20px auto;
+  max-width: 200px;
+  text-align: center;
+  font: 16px/24px RALEWAYBOLD, sans-serif;
+}
+
+.order_empty_img {
+  text-align: center;
+  margin: 40px 0;
+}
+.order_empty_img img {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 100%;
+}
+
 .order_block {
   padding: 15px;
   position: relative;
@@ -864,6 +881,13 @@ body {
 @media only screen and (min-width: 768px) {
   .order_block {
     padding: 30px 5px 30px 40px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  ._fixed_order .order_block {
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }
 

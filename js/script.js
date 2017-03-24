@@ -62,6 +62,8 @@ $(function ($) {
 
             $('.orderCount').val(1);
 
+            $('.serverCount').val(1);
+
             $order_form_2.dialog('open');
 
             return false;
@@ -71,11 +73,21 @@ $(function ($) {
 
             $('.orderSettings').show();
 
+            $('.orderEmpty').hide();
+
             if (firedEl.closest('.prodRow').attr('data-card')) {
                 $('.partCondition').show();
             } else {
                 $('.partCondition').hide();
                 $('#card_counter').val(1);
+            }
+
+            if (firedEl.closest('.prodRow').attr('data-one')) {
+                $('.oneMode').show();
+                $('#days_counter').val(30).attr('data-min', 30);
+            } else {
+                $('.oneMode').hide();
+                $('#days_counter').val(1).attr('data-min', 1);
             }
 
             setTimeout(function () {
@@ -162,8 +174,6 @@ $(function ($) {
     }
 
     $('.orderOpenBtn').on('click', function () {
-        copyData();
-
         $order_form.dialog('open');
 
         return false;
@@ -215,6 +225,10 @@ $(function ($) {
                         result = msg;
                     }
                     form.find('.serverAnswer').html(result).fadeIn().delay(2000).fadeOut("slow");
+
+                    setTimeout(function () {
+                        form.closest('.ui-dialog-content').dialog('close');
+                    }, 4000);
                 }
             });
             return false;
@@ -247,6 +261,8 @@ function copyData() {
     $('.orderDays').val($('#days_counter').val());
 
     $('.orderCount').val($('#card_counter').val());
+
+    $('.serverCount').val($('#servers_counter').val());
 }
 
 function initFilter() {
@@ -402,6 +418,8 @@ function reloadItems(arr) {
 
     $('.orderSettings').hide();
 
+    $('.orderEmpty').show();
+
     if (arr.length) {
         for (var i = 0; i < arr.length; i++) {
             var item = arr[i],
@@ -415,7 +433,8 @@ function reloadItems(arr) {
 
             html +=
                 '<div class="tr prodRow"' +
-                (/X+[L]?/g.test(suffix) ? 'data-card="true"' : '' ) +
+                (/X+[L]?/g.test(suffix) ? ' data-card="true"' : '' ) +
+                (/One/g.test(suffix) ? ' data-one="true"' : '' ) +
                 '>' +
                 '<div class="td _col_1">' +
                 '<div class="prod_name">' +
@@ -438,7 +457,7 @@ function reloadItems(arr) {
                 '<span>' +
                 addItem(item.price_day) +
                 '</span> ' +
-                '<span class="_rub"> Г</span>' +
+                '<span class="_rub"> &#x413;</span>' +
                 '</div>' +
                 '</div>' +
                 '<div class="td _col_2">' +

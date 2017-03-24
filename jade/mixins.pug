@@ -46,7 +46,7 @@ mixin header(active)
                     a.menu_link(href='study.html')
                         span.link_text Машинное обучение
                 li.menu_item(class= active == 2 ? '_active' : '')
-                    a.menu_link(href='index.html')
+                    a.menu_link(href='servers.html')
                         span.link_text Все серверы
                 li.menu_item(class= active == 3 ? '_active' : '')
                     a.menu_link(href='tariffs.html')
@@ -69,7 +69,7 @@ mixin footer()
                     .f_contact
                         span.f_contact_icon
                             img(src='i/pin.png')
-                        span Москва, Большой Каретный пер, дом 8, стр.20, офис 14
+                        span Москва, Большой Каретный пер, дом 20, стр. 3 офис 14
             
                 li.fz_16
                     a.f_contact(href='mailto:moscow@hyperlee.com')
@@ -111,6 +111,7 @@ mixin footer()
     #order_form_2.popup_form( style='display:none;'): form.sendMailForm(action='contact.php' method="POST")
         input.hide.orderInfo(name='order_info')
         input.hide.orderDays(name='order_days')
+        input.hide.serverCount(name='server_count')
         input.hide.orderCount(name='order_count')
         .form_inner
             .form_title Заявка
@@ -386,25 +387,38 @@ mixin product_offer()
 mixin col_right()
     .order_block
         .order_caption Заявка в 2 клика
-        
+        .orderEmpty.order_empty(style='display:none;')
+            span Выберите нужную конфигурацию
+            .order_empty_img
+                img(src='i/arrow-left.png')
+                
         .orderSettings(style='display:none;')
             .order_item.orderOptions 1 x Core 2 Duo E8400 3GHz1 x 2048MB DDR2 2 x 250Gb SATA
                 
             .order_info
                 span.orderPrice 100
-                span  рублей в день
+                span  рублей
                 
             p Подключение после оплаты в&nbsp;течение 15 минут
             
             ul.offer_control
                 li
                     .form_cell
+                        label.f_label(for='servers_counter') Количество серверов 
+                        .input_w.valCell
+                            input#servers_counter.input_v1.f_input._counter.cardCounter(value='1' data-min='1' data-max='1000' data-step='1' data-inputmask-regex="[1-9][0-9]*")
+                            .val_btn.minus.valMinus -
+                            .val_btn.plus.valPlus +
+                
+                li
+                    .form_cell
                         label.f_label(for='days_counter') Количество дней 
+                            span.oneMode(style='display:none;')  (Минимальный срок аренды 30 дней. Бюджет по умолчанию пересчитан на 30 дней)
                         .input_w.valCell
                             input#days_counter.input_v1.f_input._counter.cardCounter(value='1' data-min='1' data-max='100000000' data-step='1' data-inputmask-regex="[1-9][0-9]*")
                             .val_btn.minus.valMinus -
                             .val_btn.plus.valPlus +
-                
+                                
                 li.partCondition(style='display:none;')
                     .form_cell
                         label.f_label(for='card_counter') Количество карт 
@@ -434,9 +448,9 @@ mixin col_left()
                             span.check_text Виртуальный сервер 
                             
 
-            li.prodCat
+            li.prodCat.opened
                 .product_cat.catOpen Области использования
-                ul.cat_list.catList
+                ul.cat_list.catList(style='display:block;')
                     li
                         label.check_v1
                             input.hide.applyFilter(type='checkbox' data-filter='hosting_server' checked)
@@ -477,9 +491,9 @@ mixin col_left()
                             input.hide.applyFilter(type='checkbox' data-filter='other')
                             span.check_text Другое 
 
-            li.prodCat
+            li.prodCat.opened
                 .product_cat.catOpen Графические карты
-                ul.cat_list.catList
+                ul.cat_list.catList(style='display:block;')
                     li
                         label.check_v1
                             input.hide.applyPart(type='checkbox' data-filter-part='Nvidia GTX 1060' data-filter='gpu')
