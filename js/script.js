@@ -117,7 +117,7 @@ $(function ($) {
     });
 
     var tabBlock = $('.tabBlock'),
-        studyy_tabs = tabBlock.tabs({
+        study_tabs = tabBlock.tabs({
             active: 0,
             tabContext: tabBlock.data('tab-context'),
             activate: function (e, ui) {
@@ -271,9 +271,6 @@ function startFilter() {
             filtered = $.map(servers_data, function (el, index) {
                 if (el.hasOwnProperty(filter_name) === true) {
                     var param = el[filter_name];
-
-                    // console.log((param * 1) ? 'yes' : 'no', filter_name);
-
                     if ((param * 1)) {
                         return el;
                     }
@@ -304,9 +301,6 @@ function startFilter() {
             filtered = $.map(current_servers, function (el, index) {
                 if (el.hasOwnProperty(filter_name) === true) {
                     var param = el[filter_name];
-
-                    // console.log(param, part_name);
-
                     if (param == part_name) {
                         return el;
                     }
@@ -359,99 +353,6 @@ function startFilter() {
 
     reloadItems(has_filters ? current_servers.sort(sort_items) : servers_data);
 
-    /*    for (var i = 0; i < filter_list.length; i++) {
-            var item = filter_list[i];
-    
-            $('.applyFilter').each(function () {
-                var filter = $(this);
-                if (filter.attr('data-filter') == item && filter.is(':checked')) {
-                    var f = {name: item, val: filter.is(':checked')};
-    
-                    checked_filters.push(f);
-                }
-            });
-        }
-    
-        $('.applyPrice').each(function () {
-            var filter = $(this);
-            if (filter.attr('data-filter') == item && filter.is(':checked')) {
-                var f = {
-                    name: item,
-                    val: filter.is(':checked')
-                };
-    
-                if (filter.attr('data-filter-min') && filter.attr('data-filter-max')) {
-                    f.val = [filter.attr('data-filter-min') * 1, filter.attr('data-filter-max') * 1];
-                }
-    
-                checked_filters.push(f);
-            }
-        });
-    
-        if (checked_filters.length) {
-            for (var i = 0; i < checked_filters.length; i++) {
-                var filter = checked_filters[i],
-                    filter_name = checked_filters[i].name,
-                    filter_val = checked_filters[i].val;
-    
-                filtered = $.map(servers_data, function (el, index) {
-                    if (el.hasOwnProperty(filter_name) === true) {
-                        var param = el[filter_name];
-    
-                        // console.log(typeof (filter_val), filter_name, filter_val, param * 1);
-    
-                        if ('boolean' === typeof (filter_val)) {
-                            // console.log(filter_name, filter_val == (param * 1));
-                            if (filter_val == (param * 1)) {
-                                return el;
-                            }
-                        }
-    
-                        if ('object' === typeof (filter_val) && filter_val.length == 2) {
-                            var min_price = filter_val[0],
-                                max_price = filter_val[1];
-    
-                            if (param * 1 > min_price && param * 1 < max_price) {
-                                return el;
-                            }
-                        }
-                    }
-                });
-            }
-    
-        } else {
-    
-        }*/
-
-
-    // filtered = $.grep(servers_data, function (el, index) {
-    //     var ret = false;
-    //
-    //     for (var i = 0; i < checked_filters.length; i++) {
-    //         var item = checked_filters[i].name,
-    //             val = checked_filters[i].val,
-    //             out_of_filter = true;
-    //
-    //         if (el.hasOwnProperty(item) === true) {
-    //             var param = el[item];
-    //
-    //             if ('boolean' === typeof (val)) {
-    //                 if (val == param) {
-    //                     out_of_filter = false;
-    //                     console.log(item, param, val);
-    //                 }
-    //             }
-    //         }
-    //
-    //         console.log((!out_of_filter), ret, (!out_of_filter) || ret);
-    //
-    //         ret = (!out_of_filter) || ret;
-    //     }
-    //
-    //     return ret;
-    // });
-
-    // console.log(filtered, filtered.length);
 }
 
 function sort_items(a, b) {

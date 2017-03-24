@@ -85,9 +85,6 @@ mixin footer()
                         li: a.sh_link.sh_link_4(href='#')
                         
     #order_form.popup_form.formSubmit( style='display:none;'): form.sendMailForm(action='#' method="POST")
-        input.hide.orderInfo(name='order_info')
-        input.hide.orderDays(name='order_days')
-        input.hide.orderCount(name='order_count')
         .form_inner
             .form_title Заявка
                 
@@ -491,7 +488,7 @@ mixin col_left()
                             input.hide.applyPart(type='checkbox' data-filter-part='Nvidia Titan X Pascal' data-filter='gpu')
                             span.check_text Nvidia Titan X Pascal
 
-            li.prodCat
+            //-li.prodCat
                 .product_cat.catOpen Цена в день
                 ul.cat_list.catList
                     li
