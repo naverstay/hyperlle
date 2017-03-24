@@ -17,7 +17,7 @@ $(function ($) {
             min_val = 1 * inp.attr('data-min'),
             new_val = val - (1 * inp.attr('data-step'));
 
-        inp.val(new_val >= min_val ? new_val : min_val);
+        inp.val(new_val >= min_val ? new_val : min_val).trigger('change');
 
         return false;
     });
@@ -29,7 +29,7 @@ $(function ($) {
             max_val = 1 * inp.attr('data-max'),
             new_val = val + (1 * inp.attr('data-step'));
 
-        inp.val(new_val <= max_val ? new_val : max_val);
+        inp.val(new_val <= max_val ? new_val : max_val).trigger('change');
 
         return false;
     });
@@ -53,6 +53,12 @@ $(function ($) {
             $body.toggleClass('menu_opened');
 
             return false;
+        })
+        .delegate('#servers_counter', 'change', function (e) {
+            var firedEl = $(this);
+
+            $('.orderPrice').text(firedEl.val() * $('.prodCheck:checked').attr('data-price') || 0);
+
         })
         .delegate('.orderPromo', 'click', function (e) {
             var firedEl = $(this), unit = firedEl.closest('.unit_inner');
@@ -91,7 +97,7 @@ $(function ($) {
             }
 
             setTimeout(function () {
-                $('.orderPrice').text(firedEl.attr('data-price'));
+                $('.orderPrice').text(firedEl.attr('data-price') * $('#servers_counter').val());
 
                 $('.orderInfo').val(firedEl.attr('data-name') + ' ' + firedEl.attr('data-options'));
             }, 1);
