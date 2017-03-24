@@ -59,7 +59,7 @@ $(function ($) {
 
             $('.orderInfo').val(unit.find('.offer_cpu').text() + unit.find('.offer_gpu').text());
             $('.orderDays').val(1);
-            
+
             $('.orderCount').val(1);
 
             $order_form_2.dialog('open');
@@ -198,11 +198,12 @@ $(function ($) {
         return false;
     });
 
-    $('.formSubmit').each(function (ind) {
+    $('.sendMailForm').each(function (ind) {
         var form = $(this);
 
-        form.submit(function () {
-            var str = $(this).serialize();
+        form.on('submit', function () {
+            var str = form.serialize();
+
             $.ajax({
                 type: "POST",
                 url: 'contact.php',
@@ -225,10 +226,7 @@ $(function ($) {
     all_dialog_close();
 
     $(window).on('scroll', function () {
-        console.log($header.outerHeight(), $click2OrderPoint.offset().top, $doc.scrollTop());
-
         $click2Order.toggleClass('_fixed_order', $doc.scrollTop() + $header.outerHeight() >= $click2OrderPoint.offset().top);
-
     });
 });
 
