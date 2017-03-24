@@ -35,15 +35,24 @@ html(lang='ru')
                             .section_caption.text_center
                                 span.fz_35 Заказывайте все необходимые <br> вычислительные ресурсы в одном месте
                     .section.section_v4
-                        .section_inner.clearfix
+                        .section_inner.clearfix.click2OrderPoint
                             .col_splitter
                             .col._left
                                 +col_left()
                                 
-                            .col._center
+                            .col._right.click2Order
+                                .aside_holder
+                                    .aside_center
+                                        .order_holder
+                                            +col_right()
+                                
+                            .col._center._switcher
                                 +product_offer()
                                 
-                            .col._right
-                                +col_right()
+                                
+                        //-.section_inner.click2Order._aside_holder
+                            .col._center
+                                .col._right
+                                    +col_right()
                                 
             +footer()

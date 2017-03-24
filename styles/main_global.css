@@ -22,6 +22,18 @@
   clear: both;
 }
 
+.section_v4 .section_inner._aside_holder {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 .val_btn {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -461,6 +473,7 @@ body {
   overflow: hidden;
   background: #f7f7f7;
   border-top: 1px solid #e3e3e3;
+  position: relative;
 }
 .section_v4 .section_inner {
   position: relative;
@@ -468,6 +481,26 @@ body {
 @media only screen and (max-width: 1199px) {
   .section_v4 .section_inner {
     padding: 0;
+  }
+}
+.section_v4 .section_inner._aside_holder {
+  height: 0;
+}
+@media only screen and (min-width: 768px) {
+  .section_v4 .section_inner._aside_holder {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 3;
+  }
+  .section_v4 .section_inner._aside_holder .col._center {
+    height: 0;
+    z-index: 0;
+  }
+  .section_v4 .section_inner._aside_holder._fixed_order {
+    position: fixed;
+    top: 150px;
   }
 }
 
@@ -693,25 +726,51 @@ body {
     position: relative;
     z-index: 2;
   }
-  .col._right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
+  .col._center._switcher {
+    z-index: 4;
   }
-  .col._right:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 1000px;
-    width: 5000px;
-    background: #f0faef;
+  .col._right {
+    position: relative;
+    float: left;
+    width: 50%;
   }
 }
 @media only screen and (min-width: 1200px) {
   .col._right {
+    position: absolute;
     right: 12px;
+    top: 0;
+    width: 50%;
+  }
+  ._center .col._right {
+    right: auto;
+    left: 100%;
+  }
+  .col._right._fixed_order {
+    position: fixed;
+    top: 150px;
+    right: 0;
+    left: 0;
+    width: 100%;
+  }
+  .col._right._fixed_order .order_holder {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    min-width: 280px;
+  }
+  .col._right._fixed_order .aside_holder {
+    width: 100%;
+    max-width: 1420px;
+    margin: 0 auto;
+    padding: 0 12px;
+  }
+  .col._right._fixed_order .aside_center {
+    width: auto;
+    float: none;
+    margin: 0 280px;
+    min-height: 600px;
+    position: relative;
   }
   .col._right, .col._left {
     width: 280px;
@@ -751,6 +810,7 @@ body {
 .subscribe_block {
   text-align: center;
   padding: 45px 0 50px;
+  background: #f7f7f7;
 }
 .subscribe_block p {
   opacity: .6;
@@ -776,6 +836,21 @@ body {
 @media only screen and (min-width: 768px) {
   .order_block {
     padding: 30px 5px 30px 40px;
+  }
+}
+
+.order_holder {
+  position: relative;
+}
+@media only screen and (min-width: 768px) {
+  .order_holder:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10000px;
+    width: 5000px;
+    background: #f0faef;
   }
 }
 
@@ -1902,6 +1977,8 @@ textarea.input_v2 {
 .footer {
   padding: 20px 0;
   background: #191919;
+  position: relative;
+  z-index: 6;
 }
 @media only screen and (min-width: 768px) {
   .footer {

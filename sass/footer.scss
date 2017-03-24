@@ -2,7 +2,9 @@
 .footer {
   padding: 20px 0;
   background: #191919;
-
+  position: relative;
+  z-index: 6;
+  
   @include respond-to-min($resp_step_2) {
     position: absolute;
     bottom: 0;

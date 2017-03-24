@@ -1,9 +1,12 @@
-var $doc, $header, $body, $order_form, $order_form_2, servers_data, current_servers, sort_asc = false, sort_param;
+var $doc, $header, $body, $order_form, $order_form_2, $click2OrderPoint, $click2Order, servers_data, current_servers, sort_asc = false, sort_param;
 
 $(function ($) {
 
+    $doc = $(document);
     $body = $('body');
     $header = $('.header');
+    $click2Order = $('.click2Order');
+    $click2OrderPoint = $('.click2OrderPoint');
 
     sort_param = $('.sortLoad').attr('data-sort-param');
 
@@ -51,6 +54,18 @@ $(function ($) {
 
             return false;
         })
+        .delegate('.orderPromo', 'click', function (e) {
+            var firedEl = $(this), unit = firedEl.closest('.unit_inner');
+
+            $('.orderInfo').val(unit.find('.offer_cpu').text() + unit.find('.offer_gpu').text());
+            $('.orderDays').val(1);
+            
+            $('.orderCount').val(1);
+
+            $order_form_2.dialog('open');
+
+            return false;
+        })
         .delegate('.prodCheck', 'change', function (e) {
             var firedEl = $(this);
 
@@ -63,11 +78,11 @@ $(function ($) {
                 $('#card_counter').val(1);
             }
 
-            $('.orderPrice').text(firedEl.attr('data-price'));
+            setTimeout(function () {
+                $('.orderPrice').text(firedEl.attr('data-price'));
 
-            $('.orderOptions').text(firedEl.attr('data-options'));
-
-            $('.orderInfo').val(firedEl.attr('data-name') + ' ' + firedEl.attr('data-options'));
+                $('.orderInfo').val(firedEl.attr('data-name') + ' ' + firedEl.attr('data-options'));
+            }, 1);
 
         })
         .delegate('.prodRow', 'click', function (e) {
@@ -77,7 +92,7 @@ $(function ($) {
                 || e.target.tagName == 'LABEL'
                 || $(e.target).closest('LABEL').length)) {
 
-                firedEl.find('.prodCheck').prop('checked', 'checked');
+                firedEl.find('.prodCheck').prop('checked', 'checked').trigger('change');
 
             }
         })
@@ -207,7 +222,28 @@ $(function ($) {
 
     initFilter();
 
+    all_dialog_close();
+
+    $(window).on('scroll', function () {
+        console.log($header.outerHeight(), $click2OrderPoint.offset().top, $doc.scrollTop());
+
+        $click2Order.toggleClass('_fixed_order', $doc.scrollTop() + $header.outerHeight() >= $click2OrderPoint.offset().top);
+
+    });
 });
+
+function all_dialog_close() {
+    $body.on('click', '.ui-widget-overlay', all_dialog_close_gl);
+}
+
+function all_dialog_close_gl() {
+    $(".ui-dialog-content").each(function () {
+        var $this = $(this);
+        if (!$this.parent().hasClass('always_open')) {
+            $this.dialog("close");
+        }
+    });
+}
 
 function copyData() {
     $('.orderDays').val($('#days_counter').val());
