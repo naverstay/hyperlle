@@ -82,6 +82,219 @@ body {
   }
 }
 
+.tab_unit {
+  display: none;
+}
+
+.calendar_title {
+  text-align: center;
+  background: #f0faef;
+  padding: 20px;
+  margin-bottom: 30px;
+
+  p {
+    margin: 12px 0 4px;
+    font: 16px $RALEWAYSEMIBOLD;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    padding: 35px 20px;
+  }
+}
+
+.calendar_block {
+  margin: 20px auto;
+  max-width: 1180px;
+}
+
+.calendar_holder {
+  text-align: center;
+  margin-bottom: 30px;
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    margin-bottom: 85px;
+  }
+}
+
+.comparison_block {
+  margin: 35px auto;
+  max-width: 1100px;
+  position: relative;
+
+  @include respond-to-min($resp_step_2) {
+    margin-bottom: 90px;
+  }
+}
+
+.comparason_tip {
+  width: 246px;
+  margin: 35px auto 165px;
+  padding: 25px 30px;
+  border: 4px solid #61cc69;
+  text-align: center;
+  font: 16px/24px $RALEWAYSEMIBOLD;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    margin: -5px 0 0 -88px;
+    width: 176px;
+    height: 154px;
+    background: url(../i/performance.png) no-repeat 0 0;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    position: absolute;
+    right: 140px;
+    bottom: 145px;
+    margin: 0;
+  }
+}
+
+.comparison_list {
+
+  li {
+    margin-bottom: 32px;
+  }
+}
+
+.comparison_item {
+  @extend %clearfix;
+  line-height: 38px;
+}
+
+.comparison_name {
+  text-align: center;
+  font: 16px/38px $RALEWAYSEMIBOLD;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    float: left;
+    text-align: left;
+    width: 146px;
+    padding-left: 14px;
+  }
+}
+
+.comparason_val {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 0 18px;
+  font: 16px/36px $RALEWAYBOLD;
+}
+
+.comparason_rate {
+  overflow: hidden;
+  text-align: right;
+  border-radius: 20px;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: $resp_step_2;
+    max-width: 100vw;
+    background: rgb(100, 205, 109);
+    background: -moz-linear-gradient(left, rgba(100, 205, 109, 1) 0%, rgba(203, 99, 59, 1) 100%);
+    background: -webkit-linear-gradient(left, rgba(100, 205, 109, 1) 0%, rgba(203, 99, 59, 1) 100%);
+    background: linear-gradient(to right, rgba(100, 205, 109, 1) 0%, rgba(203, 99, 59, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#64cd6d', endColorstr='#cb633b', GradientType=1);
+  }
+
+  @include respond-to-min($resp_step_2) {
+    &:before {
+      width: $resp_step_3;
+      max-width: 810px;
+    }
+  }
+}
+
+.comparison_scale {
+  height: 38px;
+  position: relative;
+
+  @include respond-to-min($resp_step_2) {
+    margin: 0 146px;
+  }
+}
+
+.students_block {
+  margin: 30px auto 40px;
+  max-width: 930px;
+
+  @include respond-to-min($resp_step_2) {
+    margin-bottom: 90px;
+  }
+}
+
+.students_promo {
+  text-align: center;
+  margin-bottom: 30px;
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    margin-bottom: 75px;
+  }
+}
+
+.students_invite {
+  text-align: center;
+  font: 16px/1.6 $RALEWAYBOLD;
+  margin-bottom: 30px;
+
+  @include respond-to-min($resp_step_2) {
+    font-size: 18px;
+    margin-bottom: 50px;
+  }
+}
+
+.students_task {
+  font: 22px/1.6 $RALEWAYLIGHT;
+  position: relative;
+  padding: 20px;
+  text-align: center;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 2px;
+    width: 86px;
+    margin-left: -43px;
+    background: #020202;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    font-size: 30px;
+    padding: 35px;
+  }
+}
+
 .col {
 
   @include respond-to-min($resp_step_2) {
@@ -132,6 +345,7 @@ body {
       width: auto;
       float: none;
       margin: 0 280px;
+      min-height: 600px;
     }
   }
 }
@@ -517,12 +731,20 @@ body {
 }
 
 .link_list {
-  margin: 0 -30px;
+  margin: 0 -10px;
+
+  @include respond-to-min($resp_step_2) {
+    margin: 0 -30px;
+  }
 
   li {
     display: inline-block;
     vertical-align: top;
-    margin: 10px 28px;
+    margin: 10px;
+
+    @include respond-to-min($resp_step_2) {
+      margin: 10px 28px;
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-var $doc, $header, $body, servers_data, current_servers, sort_asc = false, sort_param, min_price, max_price;
+var $doc, $header, $body, $order_form, $order_form_2, servers_data, current_servers, sort_asc = false, sort_param;
 
 $(function ($) {
 
@@ -51,6 +51,25 @@ $(function ($) {
 
             return false;
         })
+        .delegate('.prodCheck', 'change', function (e) {
+            var firedEl = $(this);
+
+            $('.orderSettings').show();
+
+            if (firedEl.closest('.prodRow').attr('data-card')) {
+                $('.partCondition').show();
+            } else {
+                $('.partCondition').hide();
+                $('#card_counter').val(1);
+            }
+
+            $('.orderPrice').text(firedEl.attr('data-price'));
+
+            $('.orderOptions').text(firedEl.attr('data-options'));
+
+            $('.orderInfo').val(firedEl.attr('data-name') + ' ' + firedEl.attr('data-options'));
+
+        })
         .delegate('.prodRow', 'click', function (e) {
             var firedEl = $(this);
 
@@ -59,6 +78,7 @@ $(function ($) {
                 || $(e.target).closest('LABEL').length)) {
 
                 firedEl.find('.prodCheck').prop('checked', 'checked');
+
             }
         })
         .delegate('.sortBtn', 'click', function (e) {
@@ -84,7 +104,7 @@ $(function ($) {
 
             col.siblings().removeClass('_sort_asc').removeClass('_sort_desc');
 
-            reloadItems(current_servers.sort(compare));
+            reloadItems(current_servers.sort(sort_items));
 
             return false;
         });
@@ -96,16 +116,112 @@ $(function ($) {
         }
     });
 
+    var tabBlock = $('.tabBlock'),
+        studyy_tabs = tabBlock.tabs({
+            active: 0,
+            tabContext: tabBlock.data('tab-context'),
+            activate: function (e, ui) {
+
+            }
+        });
+
+    if ($("#order_form").length) {
+
+        $order_form = $("#order_form").dialog({
+            autoOpen: false,
+            modal: true,
+            closeOnEscape: true,
+            closeText: '',
+            show: "fade",
+            position: {my: "center center", at: "center center", of: window},
+            draggable: true,
+            dialogClass: 'dialog_global dialog_g_size_1 dialog_close_butt_mod_1 title_center_mod dialog_butt_v1',
+            width: 840,
+            open: function (event, ui) {
+                $body.addClass('dialog_regular_open');
+            },
+            close: function (event, ui) {
+                $body.removeClass('dialog_regular_open');
+            }
+        });
+    }
+
+    $('.orderOpenBtn').on('click', function () {
+        copyData();
+
+        $order_form.dialog('open');
+
+        return false;
+    });
+
+    if ($("#order_form_2").length) {
+
+        $order_form_2 = $("#order_form_2").dialog({
+            autoOpen: false,
+            modal: true,
+            closeOnEscape: true,
+            closeText: '',
+            show: "fade",
+            position: {my: "center center", at: "center center", of: window},
+            draggable: true,
+            dialogClass: 'dialog_global dialog_g_size_1 dialog_close_butt_mod_1 title_center_mod dialog_butt_v1',
+            width: 840,
+            open: function (event, ui) {
+                $body.addClass('dialog_regular_open');
+            },
+            close: function (event, ui) {
+                $body.removeClass('dialog_regular_open');
+            }
+        });
+    }
+
+    $('.orderOpenBtn2').on('click', function () {
+        copyData();
+
+        $order_form_2.dialog('open');
+
+        return false;
+    });
+
+    $('.formSubmit').each(function (ind) {
+        var form = $(this);
+
+        form.submit(function () {
+            var str = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: form.attr('action'),
+                data: str,
+                success: function (msg) {
+                    if (msg == 'OK') {
+                        result = '<div class="notification_ok">Спасибо, Ваша заявка была отправлена</div>';
+                    } else {
+                        result = msg;
+                    }
+                    $('#note').html(result).fadeIn().delay(2000).fadeOut("slow");
+                }
+            });
+            return false;
+        });
+    });
+
     initFilter();
 
 });
 
+function copyData() {
+    $('.orderDays').val($('#days_counter').val());
+
+    $('.orderCount').val($('#card_counter').val());
+}
+
 function initFilter() {
     var applyFilter = $('.applyFilter'),
-        applyPrice = $('.applyPrice');
+        applyPrice = $('.applyPrice'),
+        applyPart = $('.applyPart');
 
     $.getJSON("data/hyperlee.json", function (data) {
-        servers_data = data;
+        servers_data = data.sort(sort_items);
 
         startFilter();
 
@@ -116,13 +232,20 @@ function initFilter() {
         applyPrice.on('change', function () {
             startFilter();
         });
+
+        applyPart.on('change', function () {
+            startFilter();
+        });
     });
 }
 
 function startFilter() {
-    var filter_list = [
+    var has_filters = false,
+        filter_list = [
             'dedicated_server',
             'virtual_server',
+
+            'hosting_server',
             'office_server',
             'machine_study',
             'graphics_work',
@@ -132,87 +255,111 @@ function startFilter() {
             'other'
         ],
         arr = [],
-        checked_filters = [];
+        checked_filters = [],
+        price_filters = [];
 
-    $('.prodCat').each(function (ind) {
-        var filterGroup = $(this), filtered = [];
+    var filtered = [];
 
-        filterGroup.find('.applyFilter').each(function (i) {
-            var filter = $(this),
-                filter_name = filter.attr('data-filter'),
-                filter_val;
+    $('.applyFilter:checked').each(function (i) {
+        var filter = $(this),
+            filter_name = filter.attr('data-filter');
 
-            if ('checkbox' === this.type) {
-                filter_val = filter.is(':checked');
+        has_filters = true;
 
-                if (filter_val) {
-                    filtered = $.map(servers_data, function (el, index) {
-                        if (el.hasOwnProperty(filter_name) === true) {
-                            var param = el[filter_name];
+        if ('checkbox' === this.type) {
 
-                            // console.log(filter_val == (param * 1), filter_name, filter_val, param * 1);
+            filtered = $.map(servers_data, function (el, index) {
+                if (el.hasOwnProperty(filter_name) === true) {
+                    var param = el[filter_name];
 
-                            if ('boolean' === typeof (filter_val)) {
-                                // console.log(filter_name, filter_val == (param * 1));
-                                if (filter_val == (param * 1)) {
-                                    return el;
-                                }
-                            }
-                        }
-                    });
-                }
+                    // console.log((param * 1) ? 'yes' : 'no', filter_name);
 
-                if (filtered.length) {
-                    for (var j = 0; j < filtered.length; j++) {
-                        arr.push(filtered[j])
+                    if ((param * 1)) {
+                        return el;
                     }
                 }
-            }
-        });
+            });
 
-        filterGroup.find('.applyPrice').each(function (i) {
-            var filter = $(this),
-                filter_name = filter.attr('data-filter'),
-                filter_val;
-
-            if ('checkbox' === this.type) {
-                filter_val = filter.is(':checked');
-
-                if (filter_val) {
-                    min_price = 1 * filter.attr('data-filter-min');
-                    max_price = 1 * filter.attr('data-filter-max');
-
-                    console.log(min_price, max_price);
-
-                    filtered = $.map(servers_data, function (el, index) {
-                        if (el.hasOwnProperty(filter_name) === true) {
-                            var param = el[filter_name];
-
-                            if (param * 1 > min_price && param * 1 < max_price) {
-                                return el;
-                            }
-                        }
-                    });
-                }
-
-                if (filtered.length) {
-                    for (var j = 0; j < filtered.length; j++) {
-                        arr.push(filtered[j])
-                    }
+            if (filtered.length) {
+                for (var j = 0; j < filtered.length; j++) {
+                    arr.push(filtered[j])
                 }
             }
-        });
-
-
+        }
     });
 
-    current_servers = arr.length ? arrayUnique(arr) : servers_data;
+    current_servers = has_filters ? arrayUnique(arr) : servers_data;
 
-    reloadItems(current_servers.sort(compare));
+    $('.applyPart:checked').each(function (i) {
+        var filter = $(this),
+            filter_name = filter.attr('data-filter');
 
-    /*
-    
-        for (var i = 0; i < filter_list.length; i++) {
+        has_filters = true;
+
+        if (!i) arr = [];
+
+        if ('checkbox' === this.type) {
+            var part_name = filter.attr('data-filter-part');
+
+            filtered = $.map(current_servers, function (el, index) {
+                if (el.hasOwnProperty(filter_name) === true) {
+                    var param = el[filter_name];
+
+                    // console.log(param, part_name);
+
+                    if (param == part_name) {
+                        return el;
+                    }
+                }
+            });
+
+            if (filtered.length) {
+                for (var j = 0; j < filtered.length; j++) {
+                    arr.push(filtered[j])
+                }
+            }
+        }
+    });
+
+    current_servers = has_filters ? arrayUnique(arr) : servers_data;
+
+    $('.applyPrice:checked').each(function (i) {
+        var filter = $(this),
+            filter_name = filter.attr('data-filter');
+
+        has_filters = true;
+
+        if (!i) arr = [];
+
+        if ('checkbox' === this.type) {
+            var min_price = 1 * filter.attr('data-filter-min'),
+                max_price = 1 * filter.attr('data-filter-max');
+
+            filtered = $.map(current_servers, function (el, index) {
+                if (el.hasOwnProperty(filter_name) === true) {
+                    var param = el[filter_name];
+
+                    // console.log(min_price, param * 1, max_price, (param * 1 >= min_price && param * 1 < max_price));
+
+                    if (param * 1 >= min_price && param * 1 < max_price) {
+                        return el;
+                    }
+                }
+            });
+
+            if (filtered.length) {
+                for (var j = 0; j < filtered.length; j++) {
+                    arr.push(filtered[j])
+                }
+            }
+        }
+    });
+
+    current_servers = arrayUnique(arr);
+
+    reloadItems(has_filters ? current_servers.sort(sort_items) : servers_data);
+
+    /*    for (var i = 0; i < filter_list.length; i++) {
             var item = filter_list[i];
     
             $('.applyFilter').each(function () {
@@ -225,39 +372,89 @@ function startFilter() {
             });
         }
     
-        var filtered = $.grep(servers_data, function (el, index) {
-            var ret = false;
+        $('.applyPrice').each(function () {
+            var filter = $(this);
+            if (filter.attr('data-filter') == item && filter.is(':checked')) {
+                var f = {
+                    name: item,
+                    val: filter.is(':checked')
+                };
     
-            // console.log(el);
-    
-            for (var i = 0; i < checked_filters.length; i++) {
-                var item = checked_filters[i].name,
-                    val = checked_filters[i].val,
-                    out_of_filter = true;
-    
-                if (el.hasOwnProperty(item) === true) {
-                    var param = el[item];
-    
-                    if ('boolean' === typeof (val)) {
-                        if (val == param) {
-                            out_of_filter = false;
-                            console.log(item, param, val);
-                        }
-                    }
+                if (filter.attr('data-filter-min') && filter.attr('data-filter-max')) {
+                    f.val = [filter.attr('data-filter-min') * 1, filter.attr('data-filter-max') * 1];
                 }
     
-                console.log((!out_of_filter), ret, (!out_of_filter) || ret);
+                checked_filters.push(f);
+            }
+        });
     
-                ret = (!out_of_filter) || ret;
+        if (checked_filters.length) {
+            for (var i = 0; i < checked_filters.length; i++) {
+                var filter = checked_filters[i],
+                    filter_name = checked_filters[i].name,
+                    filter_val = checked_filters[i].val;
+    
+                filtered = $.map(servers_data, function (el, index) {
+                    if (el.hasOwnProperty(filter_name) === true) {
+                        var param = el[filter_name];
+    
+                        // console.log(typeof (filter_val), filter_name, filter_val, param * 1);
+    
+                        if ('boolean' === typeof (filter_val)) {
+                            // console.log(filter_name, filter_val == (param * 1));
+                            if (filter_val == (param * 1)) {
+                                return el;
+                            }
+                        }
+    
+                        if ('object' === typeof (filter_val) && filter_val.length == 2) {
+                            var min_price = filter_val[0],
+                                max_price = filter_val[1];
+    
+                            if (param * 1 > min_price && param * 1 < max_price) {
+                                return el;
+                            }
+                        }
+                    }
+                });
             }
     
-            return ret;
-        });*/
+        } else {
+    
+        }*/
+
+
+    // filtered = $.grep(servers_data, function (el, index) {
+    //     var ret = false;
+    //
+    //     for (var i = 0; i < checked_filters.length; i++) {
+    //         var item = checked_filters[i].name,
+    //             val = checked_filters[i].val,
+    //             out_of_filter = true;
+    //
+    //         if (el.hasOwnProperty(item) === true) {
+    //             var param = el[item];
+    //
+    //             if ('boolean' === typeof (val)) {
+    //                 if (val == param) {
+    //                     out_of_filter = false;
+    //                     console.log(item, param, val);
+    //                 }
+    //             }
+    //         }
+    //
+    //         console.log((!out_of_filter), ret, (!out_of_filter) || ret);
+    //
+    //         ret = (!out_of_filter) || ret;
+    //     }
+    //
+    //     return ret;
+    // });
 
     // console.log(filtered, filtered.length);
 }
 
-function compare(a, b) {
+function sort_items(a, b) {
     if (sort_asc) {
         return a.price_day - b.price_day;
     } else {
@@ -268,48 +465,62 @@ function compare(a, b) {
 function reloadItems(arr) {
     var html = '';
 
-    console.log(arr, arr.length);
+    $('.partCondition').hide();
 
-    for (var i = 0; i < arr.length; i++) {
-        var item = arr[i],
-            name = (item.tariff_name).replace(/(Hyperl[e]{1,2})(.*)/ig, '$1'),
-            suffix = (item.tariff_name).replace(/(Hyperl[e]{1,2}(.*))/ig, '$2');
+    $('.orderSettings').hide();
 
-        html +=
-            '<div class="tr prodRow">' +
-            '<div class="td _col_1">' +
-            '<div class="prod_name">' +
-            '<label class="radio_v1">' +
-            '<input class="hide prodCheck" type="radio" name="product">' +
-            '<span class="check_text"><span>' +
-            name +
-            '</span>' +
-            '<span class="fw_b">' +
-            suffix +
-            '</span>' +
-            '</span>' +
-            '</label>' +
-            '</div>' +
-            '</div>' +
-            '<div class="td _col_3">' +
-            '<div class="prod_price">' +
-            '<span>' +
-            addItem(item.price_day) +
-            '</span> ' +
-            '<span class="_rub"> Г</span>' +
-            '</div>' +
-            '</div>' +
-            '<div class="td _col_2">' +
-            '<div class="prod_info">' +
-            '<p>' +
-            addItem(item.cpu) +
-            addItem(item.ram) +
-            addItem(item.hdd) +
-            '</p>' +
-            '</div>' +
-            '</div>' +
+    if (arr.length) {
+        for (var i = 0; i < arr.length; i++) {
+            var item = arr[i],
+                name = (item.tariff_name).replace(/(Hyperl[e]{1,2})(.*)/ig, '$1'),
+                suffix = (item.tariff_name).replace(/(Hyperl[e]{1,2}(.*))/ig, '$2'),
+                options =
+                    addItem(item.cpu) +
+                    addItem(item.ram) +
+                    addItem(item.hdd) +
+                    addItem(item.gpu);
+
+            html +=
+                '<div class="tr prodRow"' +
+                (/X+[L]?/g.test(suffix) ? 'data-card="true"' : '' ) +
+                '>' +
+                '<div class="td _col_1">' +
+                '<div class="prod_name">' +
+                '<label class="radio_v1">' +
+                '<input class="hide prodCheck" type="radio" name="product" data-price="' + addItem(item.price_day) + '" data-options="' + options +
+                '" data-name="' + item.tariff_name +
+                '" >' +
+                '<span class="check_text"><span>' +
+                name +
+                '</span>' +
+                '<span class="fw_b">' +
+                suffix +
+                '</span>' +
+                '</span>' +
+                '</label>' +
+                '</div>' +
+                '</div>' +
+                '<div class="td _col_3">' +
+                '<div class="prod_price">' +
+                '<span>' +
+                addItem(item.price_day) +
+                '</span> ' +
+                '<span class="_rub"> Г</span>' +
+                '</div>' +
+                '</div>' +
+                '<div class="td _col_2">' +
+                '<div class="prod_info">' +
+                '<p>' +
+                options +
+                '</p>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+        }
+    } else {
+        html = '<div class="subscribe_block">' +
+            '<p>По вашему запросу ничего не найдено</p>' +
             '</div>';
-
     }
 
     $('.prodOffers').html(html);

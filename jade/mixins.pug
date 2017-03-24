@@ -1,4 +1,4 @@
-- var dev = true;
+- var dev = false;
 
 mixin dev_head(page_title)
     head
@@ -14,6 +14,7 @@ mixin dev_head(page_title)
         - if (dev)
             script(src='js/jquery1.10.js?no_cache')
             script(src='js/inputmask.bundle.js?no_cache')
+            script(src='js/jquery-ui-1.11.4.js?no_cache')
             script(src='js/script.js?no_cache')
         - else
             script(src='js/min/all.js?no_cache')
@@ -82,6 +83,220 @@ mixin footer()
                         li: a.sh_link.sh_link_2(href='#')
                         li: a.sh_link.sh_link_3(href='#')
                         li: a.sh_link.sh_link_4(href='#')
+                        
+    #order_form.popup_form.formSubmit( style='display:none;'): form.sendMailForm(action='#' method="POST")
+        input.hide.orderInfo(name='order_info')
+        input.hide.orderDays(name='order_days')
+        input.hide.orderCount(name='order_count')
+        .form_inner
+            .form_title Заявка
+                
+            .form_cell
+                input.f_input.input_v2(placeholder='Как вас зовут?' name='order_name')
+            
+            .form_cell
+                input.f_input.input_v2(placeholder='ВУЗ' name='order_university')
+                
+            .form_row._cell_v2
+                .form_cell
+                    input.f_input.input_v2(placeholder='Телефон' name='order_phone')
+                
+                .form_cell
+                    input.f_input.input_v2(placeholder='Е-мейл' name='order_email')
+            
+            ul.offer_control
+                li.text_center
+                    button.btn_v1.green_btn.offer_btn
+                        span.fw_b Отправить
+                                    
+    #order_form_2.popup_form.formSubmit( style='display:none;'): form.sendMailForm(action='#' method="POST")
+        input.hide.orderInfo(name='order_info')
+        input.hide.orderDays(name='order_days')
+        input.hide.orderCount(name='order_count')
+        .form_inner
+            .form_title Заявка
+                
+            .form_cell
+                input.f_input.input_v2(placeholder='Как вас зовут?' name='order_name')
+            
+            .form_cell
+                input.f_input.input_v2(placeholder='Телефон или почта' name='order_phone_email')
+                
+            .form_cell
+                input.f_input.input_v2(placeholder='Название компании' name='order_company')
+            
+            .form_cell
+                textarea.f_input.input_v2(placeholder='Комментарий' name='order_comment')
+            
+            ul.offer_control
+                li.text_center
+                    button.btn_v1.green_btn.offer_btn
+                        span.fw_b Отправить
+            
+
+mixin comparason(val)
+    .comparison_scale
+        .comparason_rate(style='width:' + val + '%;')
+            .comparason_val= val
+            
+mixin study(callback)
+    .section_inner
+        ul#study_tabs.link_list.text_center
+            li: a.menu_link(href='#study_tab_1')
+                span.link_text Тарифы
+            li: a.menu_link(href='#study_tab_2')
+                span.link_text Сравнение карт
+            li: a.menu_link(href='#study_tab_3')
+                span.link_text Мероприятия
+            li: a.menu_link(href='#study_tab_4')
+                span.link_text Для студентов
+    
+    .tabBlock(data-tab-context="#study_tabs")
+        #study_tab_1.tab_unit
+            .section_inner
+                .offer_list_holder: ul.offer_list
+                    li
+                        input.hide(type='checkbox')
+                        .offer_unit: .unit_inner
+                            .offer_img
+                                img(src='i/icon_x.png')
+                            .offer_name
+                                span Hyperlee
+                                span.fw_b X
+    
+                            .offer_gpu Nvidia GTX 1060
+                            .offer_cpu Intel Core i5 7600K,64 гб ОЗУ,480 гб SSD
+                            .offer_tip Бюджетный вариант. <br> Хорошо подходит для работы в Kaggle
+                            .offer_price
+                                span 300 
+                                span._rub  &#x413;
+                            .offer_tip
+                                span.fz_16 в день
+    
+                            .offer_control
+                                a.btn_v1.green_btn.offer_btn(href='#')
+                                    span.fw_b Подключить 
+                                    span.fz_16  в 2 клика 
+    
+                    li
+                        input.hide(type='checkbox')
+                        .offer_unit._main: .unit_inner
+                            .offer_img
+                                img(src='i/icon_xl.png')
+                            .offer_name
+                                span Hyperlee
+                                span.fw_b XL
+    
+                            .offer_gpu Nvidia GTX 1080
+                            .offer_cpu Intel Core i5 7600K,64 гб ОЗУ,480 гб SSD
+                            .offer_tip Лучшее соотношение цены <br> и качества
+    
+                            .offer_price
+                                span 450 
+                                span._rub  &#x413;
+                            .offer_tip
+                                span.fz_16 в день
+    
+                            .offer_control
+                                a.btn_v1.green_btn.offer_btn(href='#')
+                                    span.fw_b Подключить 
+                                    span.fz_16  в 2 клика 
+    
+                    li
+                        input.hide(type='checkbox')
+                        .offer_unit: .unit_inner
+                            .offer_img
+                                img(src='i/icon_xxl.png')
+                            .offer_name
+                                span Hyperlee
+                                span.fw_b XXL
+    
+                            .offer_gpu Nvidia Titan X Pascal
+                            .offer_cpu Intel Core i5 7600K,64 гб ОЗУ,480 гб SSD
+                            .offer_tip Лучшая карта для машинного <br> обучения
+    
+                            .offer_price
+                                span 850 
+                                span._rub  &#x413;
+                            .offer_tip
+                                span.fz_16 в день
+    
+                            .offer_control
+                                a.btn_v1.green_btn.offer_btn(href='#')
+                                    span.fw_b Подключить 
+                                    span.fz_16  в 2 клика 
+    
+        #study_tab_2
+            .section_inner
+                .comparison_block
+                    ul.comparison_list
+                        li
+                            .comparison_item
+                                .comparison_name: span Titan X Pascal
+                                +comparason(100)
+                        li
+                            .comparison_item
+                                .comparison_name: span GTX 1080
+                                +comparason(70)
+                        li
+                            .comparison_item
+                                .comparison_name: span GTX 1070
+                                +comparason(55)
+                        li
+                            .comparison_item
+                                .comparison_name: span GTX Titan X
+                                +comparason(50)
+                        li
+                            .comparison_item
+                                .comparison_name: span GTX 980 Ti
+                                +comparason(50)
+                        li
+                            .comparison_item
+                                .comparison_name: span GTX 1060
+                                +comparason(40)
+                        li
+                            .comparison_item
+                                .comparison_name: span GTX 980
+                                +comparason(35)
+                        
+                    .comparason_tip Производительность <br> разных типов карт
+                        
+                    
+            - if (callback)
+                .section.section_v2
+                    .section_inner
+                        .individual_offer
+                            p
+                                | Наберите 
+                                a.fw_b.clr_green(href='tel:+74951033040')  +7 495 103-30-40 
+                                | <br> и наш специалист поможет вам подобрать сервер по лучшей цене
+
+        #study_tab_3.tab_unit
+            .section_inner: .calendar_block
+                .calendar_title
+                    h2.fz_45.fw_b Ресурс для твоего будущего
+                    
+                    p Календарь мероприятий, посвященных машинному обучению
+                    
+                //-.calendar_holder
+                    | <iframe src="https://calendar.google.com/calendar/embed?src=ru.ukrainian%23holiday%40group.v.calendar.google.com&ctz=Europe/Kiev" style="border: 0" width="100%" height="780" frameborder="0" scrolling="no"></iframe>
+                    //-img(src='i/calendar.jpg')
+
+
+        #study_tab_4.tab_unit
+            .section_inner: .students_block
+                .students_promo
+                    img(src='i/students.jpg')
+                
+                .students_invite Мы приглашаем активных студентов, интересующихся новыми технологиями и, в частности, машинным обучением стать  частью команды Hyperlee и быть представителем бренда в своем ВУЗе. 
+                    
+                .students_task Задача представителя бренда вовлечь новых студентов в&nbsp;мир&nbsp;Hyperlee и машинного обучения, организация&nbsp;мероприятий и воркшопов в своем ВУЗе. 
+                    
+                ul.offer_control
+                    li.text_center
+                        a.btn_v1.green_btn.offer_btn.orderOpenBtn(href='#')
+                            span.fw_b Отправить заявку
+                            
 
 mixin product_offer()
     .product_offer
@@ -170,24 +385,36 @@ mixin col_right()
     .order_block
         .order_caption Заявка в 2 клика
         
-        .order_item 1 x Core 2 Duo E8400 3GHz1 x 2048MB DDR2 2 x 250Gb SATA
-            
-        .order_info 100 рублей в день, на&nbsp;несколько дней
-            
-        p Подключение после оплаты в&nbsp;течение 15 минут
-        
-        ul.offer_control
-            li
-                .form_cell
-                    .input_w.valCell
-                        input.input_v1.f_input._counter.cardCounter(value='1' data-min='1' data-max='100000000' data-step='1' data-inputmask-regex="[1-9][0-9]*")
-                        .val_btn.minus.valMinus -
-                        .val_btn.plus.valPlus +
-            
-            li
-                a.btn_v1.green_btn.offer_btn._w_100(href='#')
-                    span.fw_b Заказать
+        .orderSettings(style='display:none;')
+            .order_item.orderOptions 1 x Core 2 Duo E8400 3GHz1 x 2048MB DDR2 2 x 250Gb SATA
                 
+            .order_info
+                span.orderPrice 100
+                span  рублей в день, на&nbsp;несколько дней
+                
+            p Подключение после оплаты в&nbsp;течение 15 минут
+            
+            ul.offer_control
+                li
+                    .form_cell
+                        label.f_label(for='days_counter') Количество дней 
+                        .input_w.valCell
+                            input#days_counter.input_v1.f_input._counter.cardCounter(value='1' data-min='1' data-max='100000000' data-step='1' data-inputmask-regex="[1-9][0-9]*")
+                            .val_btn.minus.valMinus -
+                            .val_btn.plus.valPlus +
+                
+                li.partCondition(style='display:none;')
+                    .form_cell
+                        label.f_label(for='card_counter') Количество карт 
+                        .input_w.valCell
+                            input#card_counter.input_v1.f_input._counter.cardCounter(value='1' data-min='1' data-max='5' data-step='1' data-inputmask-regex="[1-5]")
+                            .val_btn.minus.valMinus -
+                            .val_btn.plus.valPlus +
+                
+                li
+                    a.btn_v1.green_btn.offer_btn._w_100.orderOpenBtn2(href='#')
+                        span.fw_b Заказать
+                    
 mixin col_left()
     .product_settings
         ul.product_list
@@ -210,7 +437,7 @@ mixin col_left()
                 ul.cat_list.catList
                     li
                         label.check_v1
-                            input.hide.applyFilter(type='checkbox' data-filter='office_server')
+                            input.hide.applyFilter(type='checkbox' data-filter='hosting_server')
                             span.check_text Хостинг
                             
                     li
@@ -249,6 +476,22 @@ mixin col_left()
                             span.check_text Другое 
 
             li.prodCat
+                .product_cat.catOpen Графические карты
+                ul.cat_list.catList
+                    li
+                        label.check_v1
+                            input.hide.applyPart(type='checkbox' data-filter-part='Nvidia GTX 1060' data-filter='gpu')
+                            span.check_text Nvidia GTX 1060
+                    li
+                        label.check_v1
+                            input.hide.applyPart(type='checkbox' data-filter-part='Nvidia GTX 1080' data-filter='gpu')
+                            span.check_text Nvidia GTX 1080
+                    li
+                        label.check_v1
+                            input.hide.applyPart(type='checkbox' data-filter-part='Nvidia Titan X Pascal' data-filter='gpu')
+                            span.check_text Nvidia Titan X Pascal
+
+            li.prodCat
                 .product_cat.catOpen Цена в день
                 ul.cat_list.catList
                     li
@@ -263,14 +506,14 @@ mixin col_left()
 
                     li
                         label.check_v1
-                            input.hide.applyPrice(type='checkbox' data-filter-min='200' data-filter-max='500' data-filter='price_day')
+                            input.hide.applyPrice(type='checkbox' data-filter-min='200' data-filter-max='500' data-filter='price_day' checked)
                             span.check_text 200-500
 
                     li
                         label.check_v1
                             input.hide.applyPrice(type='checkbox' data-filter-min='500' data-filter-max='100000000' data-filter='price_day')
                             span.check_text 500 и более
-
+                            
             //-li.prodCat
                 .product_cat.catOpen На какой срок
                 ul.cat_list.catList
@@ -303,7 +546,4 @@ mixin col_left()
                         label.check_v1
                             input.hide(type='checkbox')
                             span.check_text Другое 
-                                                            
-                                                            
-                                    
                                     

@@ -16,13 +16,13 @@ module.exports = function (grunt) {
                     spawn: false
                 }
             },
-            // scripts: {
-            //     files: ['js/*.js'],
-            //     tasks: ['uglify'],
-            //     options: {
-            //         spawn: false
-            //     }
-            // }
+            scripts: {
+                files: ['js/*.js'],
+                tasks: ['uglify'],
+                options: {
+                    spawn: false
+                }
+            }
         },
         sass: {
             dist: {
@@ -41,7 +41,8 @@ module.exports = function (grunt) {
                 files: {
                     'js/min/all.js': [
                         'js/jquery1.10.js',
-                        'js/select2.js',
+                        'js/inputmask.bundle.js',
+                        'js/jquery-ui-1.11.4.js',
                         'js/script.js'
                     ]
                 }

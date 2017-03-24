@@ -14,89 +14,9 @@ html(lang='ru')
                             span Передовые карты для
                             br
                             span.fz_45 машинного обучения
-                            
-                        ul.link_list.text_center
-                            li: a.menu_link(href='#')
-                                span.link_text Тарифы
-                            li: a.menu_link(href='#')
-                                span.link_text Сравнение карт
-                            li: a.menu_link(href='#')
-                                span.link_text Мероприятия
-                            li: a.menu_link(href='#')
-                                span.link_text Для студентов
 
-                        .offer_list_holder: ul.offer_list
-                            li
-                                input.hide(type='checkbox')
-                                .offer_unit: .unit_inner
-                                    .offer_img
-                                        img(src='i/icon_x.png')
-                                    .offer_name 
-                                        span Hyperlee
-                                        span.fw_b X
-                                        
-                                    .offer_gpu Nvidia GTX 1060
-                                    .offer_cpu Intel Core i5 7600K,64 гб ОЗУ,480 гб SSD
-                                    .offer_tip Бюджетный вариант. <br> Хорошо подходит для работы в Kaggle
-                                    .offer_price
-                                        span 300 
-                                        span._rub  &#x413;
-                                    .offer_tip
-                                        span.fz_16 в день
-                                        
-                                    .offer_control
-                                        a.btn_v1.green_btn.offer_btn(href='#')
-                                            span.fw_b Подключить 
-                                            span.fz_16  в 2 клика 
-                                            
-                            li
-                                input.hide(type='checkbox')
-                                .offer_unit._main: .unit_inner
-                                    .offer_img
-                                        img(src='i/icon_xl.png')
-                                    .offer_name 
-                                        span Hyperlee
-                                        span.fw_b XL
-                                        
-                                    .offer_gpu Nvidia GTX 1080
-                                    .offer_cpu Intel Core i5 7600K,64 гб ОЗУ,480 гб SSD
-                                    .offer_tip Лучшее соотношение цены <br> и качества
-
-                                    .offer_price
-                                        span 450 
-                                        span._rub  &#x413;
-                                    .offer_tip
-                                        span.fz_16 в день
-                                        
-                                    .offer_control
-                                        a.btn_v1.green_btn.offer_btn(href='#')
-                                            span.fw_b Подключить 
-                                            span.fz_16  в 2 клика 
-                                            
-                            li
-                                input.hide(type='checkbox')
-                                .offer_unit: .unit_inner
-                                    .offer_img
-                                        img(src='i/icon_xxl.png')
-                                    .offer_name 
-                                        span Hyperlee
-                                        span.fw_b XXL
-                                        
-                                    .offer_gpu Nvidia Titan X Pascal
-                                    .offer_cpu Intel Core i5 7600K,64 гб ОЗУ,480 гб SSD
-                                    .offer_tip Лучшая карта для машинного <br> обучения
-
-                                    .offer_price
-                                        span 850 
-                                        span._rub  &#x413;
-                                    .offer_tip
-                                        span.fz_16 в день
-                                        
-                                    .offer_control
-                                        a.btn_v1.green_btn.offer_btn(href='#')
-                                            span.fw_b Подключить 
-                                            span.fz_16  в 2 клика 
-                                            
+                    +study()
+                        
                     .section.section_v2
                         .section_inner
                             .individual_offer
@@ -126,5 +46,4 @@ html(lang='ru')
                             .col._right
                                 +col_right()
                                 
-
             +footer()

@@ -200,7 +200,8 @@
   &:hover {
     color: #6ab962;
   }
-  
+
+  .ui-state-active &,
   ._active & {
     cursor: default;
     color: #6ab962;

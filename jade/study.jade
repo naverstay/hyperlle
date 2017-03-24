@@ -1,0 +1,19 @@
+include mixins.pug
+doctype html
+html(lang='ru')
+    +dev_head('hyperlee машинное обучение')
+
+    body
+        .wrapper
+            .base
+                +header(1)
+                
+                .main_content
+                    .section_inner
+                        .section_caption.text_center 
+                            span Машинное обучение
+
+                    +study(true)
+                    
+
+            +footer()

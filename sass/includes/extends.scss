@@ -134,13 +134,13 @@
   }
 
   %clearfix {
+    &:before,
     &:after {
-      position: static;
-      display: block;
-      height: 0;
-      clear: both;
       content: "";
-      visibility: hidden;
+      display: table;
+    }
+    &:after {
+      clear: both;
     }
   }
 
@@ -287,7 +287,7 @@
       box-shadow: inset 0 2px 5px rgba(114, 114, 114, .94) !important;
     }
   }
-  
+
   %reservation_object_temp {
     @extend %clearfix;
     z-index: 1;

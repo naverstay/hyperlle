@@ -38,7 +38,7 @@ $cross_font_TrebuchetMS: 'Trebuchet MS', 'Helvetica CY', sans-serif;
 $cross_font_Verdana: Verdana, 'Geneva CY', 'DejaVu Sans', sans-serif;
 
 $default_t_color: #020202;
-$placeholder_color: #ccc;
+$placeholder_color: transparentize($default_t_color, .5);
 
 @mixin opacity($val : 1, $important : 0) {
   @if $important == 0 {
