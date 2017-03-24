@@ -787,6 +787,7 @@ body {
     max-width: 1420px;
     margin: 0 auto;
     padding: 0 12px;
+    height: 0;
   }
   .col._right._fixed_order .aside_center {
     width: auto;
@@ -1818,6 +1819,9 @@ body {
   }
 }
 
+.subscribe_input {
+  margin-bottom: 20px;
+}
 @media only screen and (min-width: 768px) {
   .subscribe_input input {
     padding-right: 185px;

@@ -367,8 +367,6 @@ function startFilter() {
                 if (el.hasOwnProperty(filter_name) === true) {
                     var param = el[filter_name];
 
-                    // console.log(min_price, param * 1, max_price, (param * 1 >= min_price && param * 1 < max_price));
-
                     if (param * 1 >= min_price && param * 1 < max_price) {
                         return el;
                     }
