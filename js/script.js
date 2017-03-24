@@ -205,7 +205,7 @@ $(function ($) {
             var str = $(this).serialize();
             $.ajax({
                 type: "POST",
-                url: form.attr('action'),
+                url: 'contact.php',
                 data: str,
                 success: function (msg) {
                     if (msg == 'OK') {

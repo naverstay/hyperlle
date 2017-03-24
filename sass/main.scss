@@ -105,19 +105,15 @@ body {
     }
 
     @include respond-to-max($resp_step_2) {
-      //@include flex_block(col wrap);
-      //
-      //.col {
-      //  -webkit-box-flex: 0 100%;
-      //  -moz-box-flex: 0 100%;
-      //  -webkit-flex: 0 100%;
-      //  -ms-flex: 0 100%;
-      //  flex: 0 100%;
-      //}
-      //
-      //.col._center {
-      //  order: 1;
-      //}
+      @include flex_block(column wrap);
+
+      .col {
+        width: 100%;
+      }
+
+      .col._right {
+        order: 1;
+      }
     }
   }
 }
@@ -444,7 +440,7 @@ body {
     bottom: 0;
     width: 1px;
     background: #e3e3e3;
-    z-index: 4;
+    z-index: 5;
   }
 
   @include respond-to-min($resp_step_2) {
