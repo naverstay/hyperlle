@@ -214,7 +214,7 @@ $(function ($) {
                     } else {
                         result = msg;
                     }
-                    $('#note').html(result).fadeIn().delay(2000).fadeOut("slow");
+                    form.find('.serverAnswer').html(result).fadeIn().delay(2000).fadeOut("slow");
                 }
             });
             return false;

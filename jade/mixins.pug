@@ -105,6 +105,8 @@ mixin footer()
                 li.text_center
                     button.btn_v1.green_btn.offer_btn
                         span.fw_b Отправить
+                        
+            .serverAnswer
                                     
     #order_form_2.popup_form( style='display:none;'): form.sendMailForm(action='contact.php' method="POST")
         input.hide.orderInfo(name='order_info')
@@ -129,7 +131,8 @@ mixin footer()
                 li.text_center
                     button.btn_v1.green_btn.offer_btn
                         span.fw_b Отправить
-            
+                        
+            .serverAnswer
 
 mixin comparason(val)
     .comparison_scale
@@ -371,13 +374,15 @@ mixin product_offer()
         p Подписаться на лучшие предложения дата-центров
         
         .subscribe_form
-            form(action='#')
+            form.sendMailForm(action='#')
                 .form_row
                     .form_cell.subscribe_input
                         input.input_v1.f_input(placeholder='Ваш е-мейл')
                     .form_cell.subscribe_btn
                         button.btn_v2.white_green_btn.subscribe_btn Отправить
-                        
+                
+                .serverAnswer
+                    
 mixin col_right()
     .order_block
         .order_caption Заявка в 2 клика

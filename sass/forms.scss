@@ -90,6 +90,8 @@
 }
 
 .subscribe_input {
+  margin-bottom: 20px;
+  
   @include respond-to-min($resp_step_2) {
     input {
       padding-right: 185px;
