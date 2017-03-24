@@ -136,7 +136,7 @@ $(function ($) {
             active: 0,
             tabContext: tabBlock.data('tab-context'),
             activate: function (e, ui) {
-
+                $('.tabColone li').eq($(ui.newTab).index()).show().siblings().hide();
             }
         });
 

@@ -47,7 +47,7 @@ mixin header(active)
                         span.link_text Машинное обучение
                 li.menu_item(class= active == 2 ? '_active' : '')
                     a.menu_link(href='index.html')
-                        span.link_text Все сервера
+                        span.link_text Все серверы
                 li.menu_item(class= active == 3 ? '_active' : '')
                     a.menu_link(href='tariffs.html')
                         span.link_text Тарифы
@@ -89,17 +89,17 @@ mixin footer()
             .form_title Заявка
                 
             .form_cell
-                input.f_input.input_v2(placeholder='Как вас зовут?' name='order_name')
+                input.f_input.input_v2(required placeholder='Как вас зовут?' name='order_name')
             
             .form_cell
-                input.f_input.input_v2(placeholder='ВУЗ' name='order_university')
+                input.f_input.input_v2(required placeholder='ВУЗ' name='order_university')
                 
             .form_row._cell_v2
                 .form_cell
-                    input.f_input.input_v2(placeholder='Телефон' name='order_phone')
+                    input.f_input.input_v2(required placeholder='Телефон' name='order_phone')
                 
                 .form_cell
-                    input.f_input.input_v2(placeholder='Е-мейл' name='order_email')
+                    input.f_input.input_v2(required placeholder='Е-мейл' name='order_email')
             
             ul.offer_control
                 li.text_center
@@ -116,16 +116,16 @@ mixin footer()
             .form_title Заявка
                 
             .form_cell
-                input.f_input.input_v2(placeholder='Как вас зовут?' name='order_name')
+                input.f_input.input_v2(required placeholder='Как вас зовут?' name='order_name')
             
             .form_cell
-                input.f_input.input_v2(placeholder='Телефон или почта' name='order_phone_email')
+                input.f_input.input_v2(required placeholder='Телефон или почта' name='order_phone_email')
                 
             .form_cell
-                input.f_input.input_v2(placeholder='Название компании' name='order_company')
+                input.f_input.input_v2(required placeholder='Название компании' name='order_company')
             
             .form_cell
-                textarea.f_input.input_v2(placeholder='Комментарий' name='order_comment')
+                textarea.f_input.input_v2(required placeholder='Комментарий' name='order_comment')
             
             ul.offer_control
                 li.text_center
@@ -166,7 +166,7 @@ mixin study(callback)
     
                             .offer_gpu Nvidia GTX 1060
                             .offer_cpu Intel Core i5 7600K,64 гб ОЗУ,480 гб SSD
-                            .offer_tip Бюджетный вариант. <br> Хорошо подходит для работы в Kaggle
+                            .offer_tip Бюджетный вариант. <br> Хорошо подходит для участия в Kaggle
                             .offer_price
                                 span 300 
                                 span._rub  &#x413;
@@ -377,7 +377,7 @@ mixin product_offer()
             form.sendMailForm(action='contact.php')
                 .form_row
                     .form_cell.subscribe_input
-                        input.input_v1.f_input(placeholder='Ваш е-мейл')
+                        input.input_v1.f_input(name='subscribe_email' required placeholder='Ваш е-мейл')
                     .form_cell.subscribe_btn
                         button.btn_v2.white_green_btn.subscribe_btn Отправить
                 
