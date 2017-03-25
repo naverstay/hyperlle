@@ -1,4 +1,4 @@
-var $doc, $header, $body, $order_form, $order_form_2, $click2OrderPoint, $click2Order, servers_data, current_servers, sort_asc = false, sort_param;
+var $doc, $header, $body, $order_form, $order_form_2, $click2OrderPoint, $click2Order, servers_data = [], current_servers, current_id = -1, sort_asc = true, sort_param;
 
 $(function ($) {
 
@@ -60,11 +60,14 @@ $(function ($) {
         .delegate('#days_counter', 'change', function (e) {
             recalc(this);
         })
+        .delegate('#card_counter', 'change', function (e) {
+            recalc(this);
+        })
         .delegate('.orderPromo', 'click', function (e) {
             var firedEl = $(this), unit = firedEl.closest('.unit_inner');
 
             $('.orderInfo').val(unit.find('.offer_cpu').text() + unit.find('.offer_gpu').text());
-            
+
             $('.orderDays').val(1);
 
             $('.orderCount').val(1);
@@ -77,6 +80,10 @@ $(function ($) {
         })
         .delegate('.prodCheck', 'change', function (e) {
             var firedEl = $(this);
+
+            current_id = firedEl.attr('data-product') * 1;
+
+            var item = servers_data[current_id];
 
             $('.orderSettings').show();
 
@@ -101,7 +108,15 @@ $(function ($) {
             }
 
             setTimeout(function () {
-                $('.orderInfo').val(firedEl.attr('data-name') + ' ' + firedEl.attr('data-options'));
+                var options =
+                    addItem(item.cpu) +
+                    addItem(item.ram) +
+                    addItem(item.hdd) +
+                    addItem(item.gpu);
+
+                $('.orderOptions').text(options);
+
+                $('.orderInfo').val(item.tariff_name + ' ' + options);
 
                 recalc();
             }, 1);
@@ -132,9 +147,9 @@ $(function ($) {
             if (col.hasClass('_sort_asc') || col.hasClass('_sort_desc')) {
                 col.toggleClass('_sort_asc').toggleClass('_sort_desc');
             } else {
-                col.addClass('_sort_desc');
-                firedEl.attr('data-sort', 'desc');
-                sort_asc = false;
+                col.addClass('_sort_asc');
+                firedEl.attr('data-sort', 'asc');
+                sort_asc = true;
             }
 
             sort_param = firedEl.attr('data-sort-param');
@@ -238,7 +253,8 @@ $(function ($) {
 
                     setTimeout(function () {
                         form.closest('.ui-dialog-content').dialog('close');
-                    }, 4000);
+                        form[0].reset();
+                    }, 1000);
                 }
             });
             return false;
@@ -259,7 +275,7 @@ $(function ($) {
 function recalc(el) {
     var prod = $('.prodCheck:checked');
 
-    $('.orderPrice').text(Math.floor($('#days_counter').val() / (prod.closest('.prodRow').attr('data-one') ? 30 : 1) * prod.attr('data-price') || 0) * $('#servers_counter').val());
+    $('.orderPrice').text(Math.floor($('#days_counter').val() / (prod.closest('.prodRow').attr('data-one') ? 30 : 1) * servers_data[current_id].price_day) * $('#card_counter').val() * $('#servers_counter').val());
 
 }
 
@@ -290,7 +306,13 @@ function initFilter() {
         applyPart = $('.applyPart');
 
     $.getJSON("data/hyperlee.json", function (data) {
-        servers_data = data.sort(sort_items);
+        // servers_data = data.sort(sort_items);
+
+        for (var i = 0; i < data.length; i++) {
+            servers_data.push(data[i]);
+
+            servers_data[i].id = i;
+        }
 
         startFilter();
 
@@ -323,9 +345,7 @@ function startFilter() {
             'storage',
             'other'
         ],
-        arr = [],
-        checked_filters = [],
-        price_filters = [];
+        arr = [];
 
     var filtered = [];
 
@@ -433,6 +453,8 @@ function sort_items(a, b) {
 function reloadItems(arr) {
     var html = '';
 
+    current_id = -1;
+
     $('.partCondition').hide();
 
     $('.orderSettings').hide();
@@ -454,20 +476,16 @@ function reloadItems(arr) {
 
             html +=
                 '<div class="tr prodRow"' +
-                (/X+[L]?/g.test(suffix) ? ' data-card="true"' : '' ) +
-                (/One/g.test(suffix) ? ' data-one="true"' : '' ) +
+                (/X+[L]?/g.test(suffix) ? ' data-card="true"' : '') +
+                (/One/g.test(suffix) ? ' data-one="true"' : '') +
                 '>' +
                 '<div class="td _col_1">' +
                 '<div class="prod_name">' +
                 '<label class="radio_v1">' +
-                '<input class="hide prodCheck" type="radio" name="product" data-price="' + addItem(item.price_day) + '" data-options="' + options +
-                '" data-name="' + item.tariff_name +
-                '" >' +
-                '<span class="check_text"><span>' +
-                name +
+                '<input class="hide prodCheck" type="radio" name="product" data-product="' + item.id + '">' +
+                '<span class="check_text"><span>' + name +
                 '</span>' +
-                '<span class="fw_b">' +
-                suffix +
+                '<span class="fw_b">' + suffix +
                 '</span>' +
                 '</span>' +
                 '</label>' +
@@ -475,16 +493,14 @@ function reloadItems(arr) {
                 '</div>' +
                 '<div class="td _col_3">' +
                 '<div class="prod_price">' +
-                '<span>' +
-                addItem(item.price_day) +
+                '<span>' + addItem(item.price_day) +
                 '</span> ' +
                 '<span class="_rub"> &#x413;</span>' +
                 '</div>' +
                 '</div>' +
                 '<div class="td _col_2">' +
                 '<div class="prod_info">' +
-                '<p>' +
-                options +
+                '<p>' + options +
                 '</p>' +
                 '</div>' +
                 '</div>' +

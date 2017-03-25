@@ -33,9 +33,11 @@
   color: #fff;
   position: relative;
   padding-left: 36px;
+  margin: 5px 0;
   display: inline-block;
   vertical-align: top;
   letter-spacing: .015em;
+  line-height: 30px;
 }
 
 a.f_contact {
@@ -48,6 +50,7 @@ a.f_contact {
   @extend %vert_centr;
   position: absolute;
   left: 0;
+  height: 25px;
 
   img {
     display: inline-block;

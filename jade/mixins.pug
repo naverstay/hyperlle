@@ -1,4 +1,4 @@
-- var dev = false;
+- var dev = true;
 
 mixin dev_head(page_title)
     head
@@ -64,7 +64,12 @@ mixin footer()
                         span.f_contact_icon
                             img(src='i/phone.png')
                         span +7 495 103-30-40
-            
+                    
+                    a.f_contact(href='https://telegram.me/@hyperlee')
+                        span.f_contact_icon
+                            //-img(src='i/phone.png')
+                        span @hyperlee
+
                 li
                     .f_contact
                         span.f_contact_icon
@@ -308,13 +313,13 @@ mixin product_offer()
                     .td._col_1
                         .prod_t_caption
                             span.mb Тариф
-                    .td._col_3.sortCol
-                        .prod_t_caption._sort.sortBtn(data-sort-param='price_day' data-sort='desc')
+                    .td._col_3.sortCol._sort_asc
+                        .prod_t_caption._sort.sortBtn(data-sort-param='price_day' data-sort='asc')
                             span.mb
                                 span Цена/день
                                 span.sort_icon
-                    .td._col_2.sortCol._sort_desc
-                        .prod_t_caption._sort.sortBtn.sortLoad(data-sort-param='price_day' data-sort='desc')
+                    .td._col_2.sortCol
+                        .prod_t_caption._sort.sortBtn.sortLoad(data-sort-param='price_day' data-sort='asc')
                             span.mb
                                 span Мощности
                                 span.sort_icon

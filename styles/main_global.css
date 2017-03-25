@@ -2076,9 +2076,11 @@ textarea.input_v2 {
   color: #fff;
   position: relative;
   padding-left: 36px;
+  margin: 5px 0;
   display: inline-block;
   vertical-align: top;
   letter-spacing: .015em;
+  line-height: 30px;
 }
 
 a.f_contact:hover {
@@ -2088,6 +2090,7 @@ a.f_contact:hover {
 .f_contact_icon {
   position: absolute;
   left: 0;
+  height: 25px;
 }
 .f_contact_icon img {
   display: inline-block;
