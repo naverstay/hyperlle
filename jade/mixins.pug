@@ -143,13 +143,13 @@ mixin comparason(val)
 mixin study(callback)
     .section_inner
         ul#study_tabs.link_list.text_center
-            li: a.menu_link(href='#study_tab_1')
+            li(data-clone='1'): a.menu_link(href='#study_tab_1')
                 span.link_text Тарифы
-            li: a.menu_link(href='#study_tab_2')
+            li(data-clone='2'): a.menu_link(href='#study_tab_2')
                 span.link_text Сравнение карт
-            li: a.menu_link(href='#study_tab_3')
+            li(data-clone='3'): a.menu_link(href='#study_tab_3')
                 span.link_text Мероприятия
-            li: a.menu_link(href='#study_tab_4')
+            li(data-clone='4'): a.menu_link(href='#study_tab_4')
                 span.link_text Для студентов
     
     .tabBlock(data-tab-context="#study_tabs")
@@ -402,7 +402,7 @@ mixin col_right()
             p Подключение после оплаты в&nbsp;течение 15 минут
             
             ul.offer_control
-                li
+                li.serverCounterControl
                     .form_cell
                         label.f_label(for='servers_counter') Количество серверов 
                         .input_w.valCell
