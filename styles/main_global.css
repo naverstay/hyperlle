@@ -2118,6 +2118,9 @@ a.f_contact:hover {
 .sh_link.sh_link_4 {
   background-position: -94px 0;
 }
+.sh_link.sh_link_5 {
+  background-position: -124px 0;
+}
 .sh_link:hover {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);

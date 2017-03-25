@@ -81,6 +81,10 @@ a.f_contact {
     background-position: -94px 0;
   }
 
+  &.sh_link_5 {
+    background-position: -124px 0;
+  }
+
   &:hover {
     @include transform_scale(1.2);
   }
