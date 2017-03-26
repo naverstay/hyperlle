@@ -15,9 +15,10 @@ $(function ($) {
             inp = valCell.find('input'),
             val = parseInt(inp.val()),
             min_val = 1 * inp.attr('data-min'),
+            max_val = 1 * inp.attr('data-max'),
             new_val = val - (1 * inp.attr('data-step'));
 
-        inp.val(new_val >= min_val ? new_val : min_val).trigger('change');
+        inp.val(new_val >= min_val ? (new_val <= max_val ? new_val : max_val) : min_val).trigger('change');
 
         return false;
     });
@@ -26,21 +27,34 @@ $(function ($) {
         var valCell = $(this).closest('.valCell'),
             inp = valCell.find('input'),
             val = parseInt(inp.val()),
+            min_val = 1 * inp.attr('data-min'),
             max_val = 1 * inp.attr('data-max'),
             new_val = val + (1 * inp.attr('data-step'));
 
-        inp.val(new_val <= max_val ? new_val : max_val).trigger('change');
+        inp.val(new_val <= max_val ? (new_val >= min_val ? new_val : min_val) : max_val).trigger('change');
 
         return false;
     });
 
     $body
         .delegate('.cardCounter', 'blur', function (e) {
-            var firedEl = $(this);
+            var firedEl = $(this),
+                val = firedEl.val() * 1,
+                min_val = 1 * firedEl.attr('data-min'),
+                max_val = 1 * firedEl.attr('data-max');
 
-            if (firedEl.val() * 1 < (firedEl.attr('data-min') || 1) * 1) {
-                firedEl.val(1);
+            if (min_val != void 0) {
+                if (val < min_val) {
+                    firedEl.val(min_val);
+                }
             }
+
+            if (max_val != void 0) {
+                if (val > max_val) {
+                    firedEl.val(max_val);
+                }
+            }
+
         })
         .delegate('.catOpen', 'click', function (e) {
             var firedEl = $(this);
