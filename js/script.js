@@ -275,7 +275,7 @@ $(function ($) {
 function recalc(el) {
     var prod = $('.prodCheck:checked');
 
-    $('.orderPrice').text(Math.floor($('#days_counter').val() / (prod.closest('.prodRow').attr('data-one') ? 30 : 1) * servers_data[current_id].price_day) * $('#card_counter').val() * $('#servers_counter').val());
+    $('.orderPrice').text(Math.floor($('#days_counter').val() * servers_data[current_id].price_day) * $('#card_counter').val() * $('#servers_counter').val());
 
 }
 
@@ -513,7 +513,6 @@ function reloadItems(arr) {
     }
 
     $('.prodOffers').html(html);
-
 }
 
 function addItem(str) {

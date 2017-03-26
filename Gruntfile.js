@@ -16,13 +16,13 @@ module.exports = function (grunt) {
                     spawn: false
                 }
             },
-            // scripts: {
-            //     files: ['js/*.js'],
-            //     tasks: ['uglify'],
-            //     options: {
-            //         spawn: false
-            //     }
-            // }
+            scripts: {
+                files: ['js/*.js'],
+                tasks: ['uglify'],
+                options: {
+                    spawn: false
+                }
+            }
         },
         sass: {
             dist: {
