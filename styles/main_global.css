@@ -2097,6 +2097,7 @@ a.f_contact:hover {
   position: absolute;
   left: 0;
   height: 25px;
+  width: 32px;
 }
 .f_contact_icon img {
   display: inline-block;
