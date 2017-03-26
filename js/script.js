@@ -38,7 +38,7 @@ $(function ($) {
         .delegate('.cardCounter', 'blur', function (e) {
             var firedEl = $(this);
 
-            if (firedEl.val() * 1 < 1) {
+            if (firedEl.val() * 1 < (firedEl.attr('data-min') || 1) * 1) {
                 firedEl.val(1);
             }
         })
