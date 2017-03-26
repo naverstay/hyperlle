@@ -1756,9 +1756,15 @@ body {
 
 .header_contacts {
   font: 18px RALEWAYBOLD, sans-serif;
-  padding-top: 8px;
   text-align: right;
   display: none;
+}
+.header_contacts p {
+  margin-bottom: 8px;
+}
+.header_contacts a {
+  text-decoration: none;
+  color: #020202;
 }
 @media only screen and (min-width: 768px) {
   .header_contacts {

@@ -210,9 +210,18 @@
 
 .header_contacts {
   font: 18px $RALEWAYBOLD;
-  padding-top: 8px;
+  //padding-top: 8px;
   text-align: right;
   display: none;
+
+  p {
+    margin-bottom: 8px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: $default_t_color;
+  }
 
   @include respond-to-min($resp_step_2) {
     float: right;
