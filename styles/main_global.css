@@ -1954,6 +1954,11 @@ textarea.input_v2 {
   font: 22px/30px RALEWAYSEMIBOLD, sans-serif;
   text-align: center;
 }
+@media only screen and (max-width: 319px) {
+  .btn_v1.offer_btn {
+    padding: 15px;
+  }
+}
 
 .btn_v2 {
   height: 47px;

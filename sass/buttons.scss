@@ -11,8 +11,8 @@
     font: 22px/30px $RALEWAYSEMIBOLD;
     text-align: center;
 
-    span {
-
+    @include respond-to-max($resp_step_1) {
+      padding: 15px;
     }
   }
 }
