@@ -495,7 +495,7 @@ body {
   }
   .section_v4 .section_inner._aside_holder._fixed_order {
     position: fixed;
-    top: 150px;
+    top: 190px;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -770,7 +770,7 @@ body {
   }
   .col._right._fixed_order {
     position: fixed;
-    top: 150px;
+    top: 190px;
     right: 0;
     left: 0;
     width: 100%;
@@ -804,6 +804,9 @@ body {
     margin: 0 280px;
     min-height: 600px;
   }
+  ._no_filters .col._center {
+    margin-left: 0;
+  }
 }
 
 .col_splitter:after, .col_splitter:before {
@@ -813,6 +816,9 @@ body {
   width: 1px;
   background: #e3e3e3;
   z-index: 5;
+}
+._no_filters .col_splitter:before {
+  display: none !important;
 }
 @media only screen and (min-width: 768px) {
   .col_splitter:before {
@@ -1496,15 +1502,22 @@ body {
 
 .coach_block {
   position: relative;
-  text-align: right;
   color: #020202;
+  text-align: right;
 }
 @media only screen and (min-width: 768px) {
   .coach_block {
-    float: left;
+    text-align: left;
   }
 }
 @media only screen and (min-width: 1200px) {
+  .coach_block {
+    text-align: right;
+    width: 60%;
+    float: left;
+  }
+}
+@media only screen and (min-width: 1400px) {
   .coach_block {
     width: 50%;
   }
@@ -1513,7 +1526,7 @@ body {
 .coach_photo {
   display: inline-block;
   vertical-align: top;
-  padding: 40px;
+  padding: 40px 5.8%;
 }
 .coach_photo img {
   display: block;
@@ -1552,9 +1565,9 @@ body {
 @media only screen and (min-width: 768px) {
   .coach_features {
     float: left;
-    margin: 65px 0 0 115px;
+    margin: 65px 0 0 16.5%;
     width: 280px;
-    padding: 20px 35px;
+    padding: 20px 5%;
   }
   .coach_features:after {
     display: none;

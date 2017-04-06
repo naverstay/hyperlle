@@ -99,7 +99,7 @@ body {
 
         &._fixed_order {
           position: fixed;
-          top: 150px;
+          top: 190px;
         }
       }
     }
@@ -395,7 +395,7 @@ body {
 
       &._fixed_order {
         position: fixed;
-        top: 150px;
+        top: 190px;
         right: 0;
         left: 0;
         width: 100%;
@@ -435,6 +435,10 @@ body {
       float: none;
       margin: 0 280px;
       min-height: 600px;
+
+      ._no_filters & {
+        margin-left: 0;
+      }
     }
   }
 }
@@ -448,6 +452,12 @@ body {
     width: 1px;
     background: #e3e3e3;
     z-index: 5;
+  }
+
+  ._no_filters & {
+    &:before {
+      display: none !important;
+    }
   }
 
   @include respond-to-min($resp_step_2) {
@@ -1179,14 +1189,20 @@ body {
 
 .coach_block {
   position: relative;
-  text-align: right;
   color: #020202;
+  text-align: right;
 
   @include respond-to-min($resp_step_2) {
-    float: left;
+    text-align: left;
   }
 
   @include respond-to-min($resp_step_3) {
+    text-align: right;
+    width: 60%;
+    float: left;
+  }
+
+  @include respond-to-min($resp_step_3 + 200) {
     width: 50%;
   }
 }
@@ -1194,7 +1210,7 @@ body {
 .coach_photo {
   display: inline-block;
   vertical-align: top;
-  padding: 40px;
+  padding: 40px 5.8%;
 
   img {
     display: block;
@@ -1236,9 +1252,9 @@ body {
 
   @include respond-to-min($resp_step_2) {
     float: left;
-    margin: 65px 0 0 115px;
+    margin: 65px 0 0 16.5%;
     width: 280px;
-    padding: 20px 35px;
+    padding: 20px 5%;
 
     &:after {
       display: none;
