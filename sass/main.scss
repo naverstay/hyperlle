@@ -32,10 +32,10 @@ body {
   position: relative;
   min-height: 100%;
   overflow: hidden;
-  padding-top: 115px;
+  padding-top: 191px;
 
   @include respond-to-min($resp_step_3) {
-    padding-top: 135px;
+    //padding-top: 191px;
   }
 }
 
@@ -860,6 +860,18 @@ body {
     margin: 55px 0 35px;
     font: 35px/45px $RALEWAYLIGHT;
   }
+
+  p {
+    padding-top: 7px;
+
+    + p {
+      margin-top: 24px;
+    }
+  }
+
+  b {
+    font-family: $RALEWAYBOLD;
+  }
 }
 
 .link_list {
@@ -1165,6 +1177,132 @@ body {
   }
 }
 
+.coach_block {
+  position: relative;
+  text-align: right;
+  color: #020202;
+
+  @include respond-to-min($resp_step_2) {
+    float: left;
+  }
+
+  @include respond-to-min($resp_step_3) {
+    width: 50%;
+  }
+}
+
+.coach_photo {
+  display: inline-block;
+  vertical-align: top;
+  padding: 40px;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+.coach_features {
+  position: relative;
+  text-align: left;
+  background: #f7f7f7;
+  padding: 22px 35px;
+
+  &:before {
+    display: none;
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 40px solid #f7f7f7;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 200px;
+    top: 100%;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 40px solid #f7f7f7;
+  }
+
+  p {
+    font: 24px $RALEWAYBOLD;
+    margin-bottom: 5px;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    float: left;
+    margin: 65px 0 0 115px;
+    width: 280px;
+    padding: 20px 35px;
+
+    &:after {
+      display: none;
+    }
+
+    &:before {
+      display: block;
+    }
+  }
+}
+
+.coach_info {
+  color: #020202;
+  font-size: 16px;
+
+  p {
+    margin-bottom: 20px;
+    line-height: 1.9;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    float: left;
+    padding: 60px 20px 0;
+  }
+
+  @include respond-to-min($resp_step_3) {
+    max-width: 450px;
+  }
+}
+
+.coach_form {
+  margin: 35px auto;
+  max-width: 840px;
+  background: #f6fcf5;
+  border: 1px solid #f2f2f2;
+  padding: 17px 10px;
+
+  @include respond-to-min($resp_step_2) {
+    margin-bottom: 85px;
+    padding: 47px 10px;
+  }
+
+  form {
+    margin: 0 auto;
+    max-width: 560px;
+  }
+
+  .form_cell {
+    margin-bottom: 30px;
+  }
+
+  .input_v2 {
+    background: #f6fcf5;
+  }
+}
+
+.features_list {
+  font: 14px $RALEWAYSEMIBOLD;
+
+  li {
+    margin: 12px 0 16px;
+  }
+}
+
 // **********  text
 
 .text_center {
@@ -1183,6 +1321,10 @@ body {
   text-transform: uppercase;
 }
 
+.fw_sb {
+  font-family: $RALEWAYSEMIBOLD;
+}
+
 .fw_b {
   font-family: $RALEWAYBOLD;
 }
@@ -1193,6 +1335,10 @@ body {
 
 .fz_16 {
   font-size: 16px;
+}
+
+.fz_24 {
+  font-size: 24px;
 }
 
 .fz_30 {
@@ -1219,6 +1365,24 @@ body {
   }
 }
 
+.gl_link {
+  text-decoration: none;
+  display: inline-block;
+
+  &.clr_white {
+    @include transition_all(border-color .3s);
+    border-bottom: 1px solid #fff;
+
+    &:hover {
+      border-color: transparent;
+    }
+  }
+}
+
 .clr_green {
   color: #60cc69;
+}
+
+.clr_white {
+  color: #fff;
 }

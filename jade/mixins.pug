@@ -27,6 +27,11 @@ mixin loop_while(counter)
        
 mixin header(active)
     div.header
+        .banner
+            .section_inner.text_center.clr_white
+                p Вопросы по машинному обучению?  
+                    a.gl_link.clr_white(href='#') Ответы здесь 
+
         .section_inner.clearfix
             .logo_block
                 a.logo(href='index.html')
@@ -41,7 +46,7 @@ mixin header(active)
                         span.phone_code +7 495 
                         b.fw_b 103-30-40
                 p
-                    a.f_contact(href='https://telegram.me/@hyperlee')
+                    a.f_contact(href='http://t.me/hyperlee')
                         span.f_contact_icon
                             img(src='i/telegram.png')
                         span @hyperlee
@@ -53,8 +58,10 @@ mixin header(active)
                     a.menu_link(href='study.html')
                         span.link_text Машинное обучение
                 li.menu_item(class= active == 2 ? '_active' : '')
-                    a.menu_link(href='servers.html')
-                        span.link_text Все серверы
+                    a.menu_link(href='hypecoach.html')
+                        span.link_icon
+                            img(src='i/coach_icon.png')
+                        span.link_text.hype_coach hypeCoach
                 li.menu_item(class= active == 3 ? '_active' : '')
                     a.menu_link(href='tariffs.html')
                         span.link_text Тарифы
@@ -140,7 +147,14 @@ mixin footer()
             
             .form_cell
                 textarea.f_input.input_v2(required placeholder='Комментарий' name='order_comment')
-            
+                
+            .form_cell._mod_check
+                label.check_v2
+                    input.hide(type='checkbox')
+                    span.check_text.fw_sb Включить 1 час консультации со специалистом hypeCoach.   
+                        | 850 
+                        span._rub  &#x413;
+
             ul.offer_control
                 li.text_center
                     button.btn_v1.green_btn.offer_btn
